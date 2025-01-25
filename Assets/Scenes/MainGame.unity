@@ -2641,6 +2641,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1352496740}
     - target: {fileID: 3273882791840375425, guid: 05918d1fe528c734691e2b7555171445, type: 3}
+      propertyPath: drawColliders
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273882791840375425, guid: 05918d1fe528c734691e2b7555171445, type: 3}
       propertyPath: verticalBorderPercentage
       value: 0.01
       objectReference: {fileID: 0}
