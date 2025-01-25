@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8155b27411ef0944fa3dd06d52ed9a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 312438540338299892, guid: 980f5bf7b170c0f42a551ec2db11a12b, type: 3}
-  chargeSpeed: 0
-  maxCharge: 0
+  bubblePrefab: {fileID: 589299665702502475, guid: 8c9ac497d1089e746be97b9ac05ce54c, type: 3}
+  player: {fileID: 0}
+  chargeSpeed: 0.8
+  maxCharge: 2.5

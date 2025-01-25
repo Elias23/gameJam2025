@@ -10,8 +10,8 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField, RequiredField] private GameObject bubblePrefab;
     [SerializeField, RequiredField] private PlayerController player;
 
-    [Header("Charge Shot")]
-    [SerializeField] private float chargeSpeed;
+    [Header("Charge Shot")] [SerializeField]
+    private float chargeSpeed;
 
     [SerializeField] private float maxCharge = 2.5f;
 
@@ -32,13 +32,21 @@ public class ProjectileManager : MonoBehaviour
 
     private void Update()
     {
-        // TODO: increase charge of bubble
+        if (currentHeldBubble == null)
+            return;
+
+        var bubble = currentHeldBubble.GetComponent<BubbleProjectile>();
+        currentChargeLevel += (chargeSpeed * Time.deltaTime);
+        currentChargeLevel = Mathf.Min(currentChargeLevel, maxCharge);
+        bubble.setSize(currentChargeLevel);
     }
 
     public void ChargeProjectile()
     {
         // spawn bubble in front of player
+        currentChargeLevel = 1;
         currentHeldBubble = Instantiate(bubblePrefab, player.transform);
+        currentHeldBubble.transform.localPosition += new Vector3(-0.2f, 1.04f, 0);
     }
 
     public void FireProjectile()
@@ -52,5 +60,6 @@ public class ProjectileManager : MonoBehaviour
         // release bubble
         var bubble = currentHeldBubble.GetComponent<BubbleProjectile>();
         bubble.ReleaseCharge();
+        currentChargeLevel = 1;
     }
 }

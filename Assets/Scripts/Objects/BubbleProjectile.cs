@@ -10,7 +10,6 @@ public class BubbleProjectile : MonoBehaviour
     [SerializeField, RequiredField] private float sideMovementAmplitude = 1f;
     [SerializeField, RequiredField] private float sideMovementFrequency = 2f;
     [SerializeField, RequiredField] private float wobbleStrength = 0.2f;
-    [SerializeField, RequiredField] public float sizeModifier = 1f;
 
     private float topBounds;
     private float timeOffset;
@@ -19,12 +18,16 @@ public class BubbleProjectile : MonoBehaviour
 
     void Start()
     {
-        transform.localScale *= sizeModifier;
         var (top, _) = GameBounds.Instance.GetGameBoundsWorldPos();
         topBounds = top;
 
         // Random starting phase for varied movement
         timeOffset = Random.Range(0f, 2f * Mathf.PI);
+    }
+
+    public void setSize(float size)
+    {
+        transform.localScale = Vector3.one * size;
     }
 
     public void ReleaseCharge()

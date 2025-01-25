@@ -794,14 +794,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1668671524}
-    - target: {fileID: -1123386541261848809, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
-      propertyPath: maxCharge
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -1123386541261848809, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
-      propertyPath: chargeSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2685515730883658838, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
