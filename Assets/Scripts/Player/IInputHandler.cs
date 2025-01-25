@@ -1,10 +1,8 @@
-﻿namespace Player
-{
-    using Core;
-    using Unity.VisualScripting;
-    using UnityEngine;
-    using Update = UnityEngine.PlayerLoop.Update;
+﻿using Core;
+using UnityEngine;
 
+namespace Player
+{
     public interface IInputHandler
     {
         void Update(Vector3 currentPosition);
@@ -19,6 +17,7 @@
         {
             // nop
         }
+
         public float GetMovementDirection()
         {
             var keyboardInput = Input.GetAxisRaw("Horizontal");
@@ -85,7 +84,7 @@
         private void HandleShootingAction(Touch touch)
         {
             var touchPhase = touch.phase;
-            isShootingPressed |= touchPhase == TouchPhase.Began ;
+            isShootingPressed |= touchPhase == TouchPhase.Began;
             isShootingReleased |= touchPhase == TouchPhase.Ended;
         }
 
@@ -104,6 +103,5 @@
 
         public bool isShootingActionReleased() =>
             isShootingReleased;
-
     }
 }

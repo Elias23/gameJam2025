@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.RequiredField.Scripts;
 using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
     [SerializeField, RequiredField] public PlayerController Player;
-    [SerializeField, RequiredField] public Transform PlayerTransform;
 
     [SerializeField] private float touchMinDistanceThreshold = 0.2f;
     private List<IInputHandler> inputHandlers;
@@ -27,7 +24,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        inputHandlers.ForEach(it => it.Update(PlayerTransform.position));
+        inputHandlers.ForEach(it => it.Update(PlayerController.Instance.GetPlayerPosition()));
 
         float horizontalInput = inputHandlers.Sum(it => it.GetMovementDirection());
         Player.MovePlayer(horizontalInput);

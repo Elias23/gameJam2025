@@ -10,10 +10,24 @@ namespace Player
 
         [Header("Bubble")] [SerializeField] private GameObject bubblePrefab;
 
+        public static PlayerController Instance { get; private set; }
+
         private float _minX;
         private float _maxX;
         private Camera _mainCamera;
         private Vector2 _screenBounds;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -23,6 +37,8 @@ namespace Player
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
             transform.position = Vector3.up * bottom;
         }
+
+        public Vector3 GetPlayerPosition() => transform.position;
 
         private void CalculateScreenBounds()
         {
