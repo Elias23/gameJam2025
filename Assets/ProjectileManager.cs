@@ -25,7 +25,10 @@ public class ProjectileManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            ResetCharge();
+        }
         else
             Destroy(gameObject);
     }
@@ -60,6 +63,13 @@ public class ProjectileManager : MonoBehaviour
         // release bubble
         var bubble = currentHeldBubble.GetComponent<BubbleProjectile>();
         bubble.ReleaseCharge();
+
+        ResetCharge();
+    }
+
+    private void ResetCharge()
+    {
+        currentHeldBubble = null;
         currentChargeLevel = 1;
     }
 }
