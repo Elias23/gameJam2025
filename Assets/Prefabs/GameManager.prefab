@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7252312929749680766}
   - component: {fileID: -1998839893082717555}
+  - component: {fileID: 8695686535457991306}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,3 +48,18 @@ MonoBehaviour:
   targetAspectRatio: 0.65
   targetVerticalOffset: 0.08
   drawBounds: 1
+--- !u!114 &8695686535457991306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623039780341350379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2db570e03af6e4d8183a6f60505cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 0}
+  shipHealth: 100
+  playerLife: 3

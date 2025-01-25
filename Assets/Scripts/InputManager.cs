@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using Player;
 using UnityEngine;
 
@@ -21,9 +22,12 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GameState != GameState.Playing)
+            return;
+
         inputHandlers.ForEach(it => it.Update(PlayerController.Instance.GetPlayerPosition()));
 
-        float horizontalInput = inputHandlers.Sum(it => it.GetMovementDirection());
+        var horizontalInput = inputHandlers.Sum(it => it.GetMovementDirection());
         PlayerController.Instance.MovePlayer(horizontalInput);
 
         if (inputHandlers.Any(input => input.isShootingActionPressed()))

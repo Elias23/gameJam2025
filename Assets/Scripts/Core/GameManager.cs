@@ -2,11 +2,18 @@ using UnityEngine;
 
 namespace Core
 {
+    public enum GameState
+    {
+        Playing,
+        GameOver,
+        GameCongratulation
+    }
+
     public class GameManager : MonoBehaviour
     {
         public GameObject gameOverUI;
         public GameObject gameCongratulationUI;
-        
+
         [Header("Game Settings")] [SerializeField]
         private float shipHealth = 100f;
 
@@ -14,11 +21,14 @@ namespace Core
 
         public static GameManager Instance { get; private set; }
 
+        public GameState GameState { get; private set; }
+
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                GameState = GameState.Playing;
             }
             else
             {
@@ -26,31 +36,42 @@ namespace Core
             }
         }
 
+        private void Update()
+        {
+            if (GameState != GameState.Playing)
+            {
+                // slow motion
+                Time.timeScale = 0.05f;
+            }
+        }
+
         public void HandleShipDamage(float damage)
         {
             shipHealth -= damage;
-            if (shipHealth <= 0)
+            if (shipHealth <= 0 && GameState == GameState.Playing)
             {
-                gameCongratulation();
+                ShowGameCongratulationScreen();
             }
         }
 
         public void HandleGarbageDropped()
         {
             playerLife--;
-            if (playerLife <= 0)
+            if (playerLife <= 0 && GameState == GameState.Playing)
             {
-                gameOver();
+                ShowGameOverScreen();
             }
         }
 
-        public void gameOver()
+        private void ShowGameOverScreen()
         {
+            GameState = GameState.GameOver;
             gameOverUI.SetActive(true);
         }
 
-        public void gameCongratulation()
+        private void ShowGameCongratulationScreen()
         {
+            GameState = GameState.GameCongratulation;
             gameCongratulationUI.SetActive(true);
         }
     }
