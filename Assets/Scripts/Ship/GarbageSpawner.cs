@@ -75,7 +75,6 @@ namespace Ship
             // Check if we are behind on target difficulty
             var weightDeficit = (targetWeightPerMinute * (minuteTimer / 60f)) - actualWeightThisMinute;
 
-            // Ensure minimum spawn chance of 10%
             var spawnChance = Mathf.Clamp01(weightDeficit / targetWeightPerMinute);
             return Random.value < spawnChance;
         }

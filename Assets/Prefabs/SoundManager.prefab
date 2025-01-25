@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8089031250495071323
+--- !u!1 &1204795995348608254
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2685515730883658838}
-  - component: {fileID: -1123386541261848809}
+  - component: {fileID: 4830314605595733580}
+  - component: {fileID: 8780907056727220576}
   m_Layer: 0
-  m_Name: ProjectileManager
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2685515730883658838
+--- !u!4 &4830314605595733580
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8089031250495071323}
+  m_GameObject: {fileID: 1204795995348608254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,21 +32,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1123386541261848809
+--- !u!114 &8780907056727220576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8089031250495071323}
+  m_GameObject: {fileID: 1204795995348608254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8155b27411ef0944fa3dd06d52ed9a47, type: 3}
+  m_Script: {fileID: 11500000, guid: 772a0acdfb28e0f458a57680b0be82f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 589299665702502475, guid: 8c9ac497d1089e746be97b9ac05ce54c, type: 3}
-  chargeSpeed: 4
-  maxCharge: 3
-  shootSounds:
-  - {fileID: 8300000, guid: e29b4822a17f43d40bc4641892f8f9c6, type: 3}
-  - {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
