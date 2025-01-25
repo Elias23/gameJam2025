@@ -61,5 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 0}
+  gameCongratulationUI: {fileID: 0}
   shipHealth: 100
   playerLife: 3

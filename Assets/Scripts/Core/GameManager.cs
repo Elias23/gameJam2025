@@ -41,14 +41,24 @@ namespace Core
             if (GameState != GameState.Playing)
             {
                 // slow motion
-                Time.timeScale = 0.05f;
+                Time.timeScale = 0.2f;
             }
+        }
+
+        private void OnDestroy()
+        {
+            Time.timeScale = 1f;
         }
 
         public void HandleShipDamage(float damage)
         {
+            if (GameState != GameState.Playing)
+            {
+                return;
+            }
+
             shipHealth -= damage;
-            if (shipHealth <= 0 && GameState == GameState.Playing)
+            if (shipHealth <= 0)
             {
                 ShowGameCongratulationScreen();
             }
@@ -56,8 +66,13 @@ namespace Core
 
         public void HandleGarbageDropped()
         {
+            if (GameState != GameState.Playing)
+            {
+                return;
+            }
+
             playerLife--;
-            if (playerLife <= 0 && GameState == GameState.Playing)
+            if (playerLife <= 0)
             {
                 ShowGameOverScreen();
             }
