@@ -1,21 +1,18 @@
 using Assets.RequiredField.Scripts;
 using JetBrains.Annotations;
 using Player;
-using Unity.VisualScripting;
 using UnityEngine;
-using Update = UnityEngine.PlayerLoop.Update;
 
 public class ProjectileManager : MonoBehaviour
 {
     [SerializeField, RequiredField] private GameObject bubblePrefab;
-    [SerializeField, RequiredField] private PlayerController player;
 
     [Header("Charge Shot")] [SerializeField]
     private float chargeSpeed;
 
     [SerializeField] private float maxCharge = 2.5f;
 
-    [CanBeNull] private GameObject currentHeldBubble = null;
+    [CanBeNull] private BubbleProjectile currentBubbleScript = null;
 
     private bool isCharging = false;
     private float currentChargeLevel = 1f;
@@ -35,10 +32,10 @@ public class ProjectileManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentHeldBubble == null)
+        if (!currentBubbleScript)
             return;
 
-        var bubble = currentHeldBubble.GetComponent<BubbleProjectile>();
+        var bubble = currentBubbleScript;
         currentChargeLevel += (chargeSpeed * Time.deltaTime);
         currentChargeLevel = Mathf.Min(currentChargeLevel, maxCharge);
         bubble.setSize(currentChargeLevel);
@@ -48,28 +45,29 @@ public class ProjectileManager : MonoBehaviour
     {
         // spawn bubble in front of player
         currentChargeLevel = 1;
-        currentHeldBubble = Instantiate(bubblePrefab, player.transform);
-        currentHeldBubble.transform.localPosition += new Vector3(-0.2f, 1.04f, 0);
+        var bubbleObject = Instantiate(bubblePrefab, PlayerController.Instance.transform);
+        currentBubbleScript = bubbleObject.GetComponent<BubbleProjectile>();
+
+        bubbleObject.transform.localPosition += new Vector3(-0.2f, 1.04f, 0);
     }
 
     public void FireProjectile()
     {
-        if (currentHeldBubble == null)
+        if (!currentBubbleScript)
         {
             Debug.LogWarning("Trying to fire a bubble even though none is charging");
             return;
         }
 
         // release bubble
-        var bubble = currentHeldBubble.GetComponent<BubbleProjectile>();
-        bubble.ReleaseCharge();
+        currentBubbleScript.ReleaseCharge();
 
         ResetCharge();
     }
 
     private void ResetCharge()
     {
-        currentHeldBubble = null;
+        currentBubbleScript = null;
         currentChargeLevel = 1;
     }
 }
