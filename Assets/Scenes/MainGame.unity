@@ -678,7 +678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   screenEdgeBuffer: 0.5
-  bottomOffset: 1
 --- !u!212 &1668671525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -806,12 +805,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696478910}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6232425, y: 1.9736032, z: 0.0430416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1841255495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841255494
 GameObject:
@@ -843,6 +842,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 903838278}
+  - {fileID: 1696478913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -854,4 +854,3 @@ SceneRoots:
   - {fileID: 1841255495}
   - {fileID: 1002761949}
   - {fileID: 1352496741}
-  - {fileID: 1696478913}
