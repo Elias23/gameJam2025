@@ -14,9 +14,16 @@ namespace Core
         public bool drawColliders = true; // Flag to make drawing optional
         [SerializeField, RequiredField] public Sprite borderSprite; // Assign a sprite in the Inspector
 
-    void Start()
-    {
-        bounds = GameBounds.Instance.GetGameBoundsWorldPos();
+        private Camera camera;
+
+        void Awake()
+        {
+            camera = Camera.main;
+        }
+
+        void Start()
+        {
+            bounds = GameBounds.Instance.GetGameBoundsWorldPos();
 
             if (Application.isPlaying)
             {
@@ -32,29 +39,33 @@ namespace Core
             var worldWidth = screenWidth * (1 - 2 * horizontalBorderPercentage);
             var worldHeight = screenHeight * (1 - 2 * verticalBorderPercentage);
 
-        GameObject borders = new GameObject("Borders");
-        borders.transform.SetParent(gameWorld.transform);
-       
-        // Left border
-        CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders,"side");
-    
-        // Right border
-        CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders,"side");
+            GameObject borders = new GameObject("Borders");
+            borders.transform.SetParent(gameWorld.transform);
 
-        // Top border
-        CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness), borders, "top");
+            // Left border
+            CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0),
+                new Vector2(borderThickness, worldHeight), borders, "side");
 
-        // Bottom border
-        CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness), borders,"bottom");
-    }
+            // Right border
+            CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0),
+                new Vector2(borderThickness, worldHeight), borders, "side");
 
-    void CreateBorder(Vector2 position, Vector2 size,GameObject borders,string name)
-    {
-        GameObject border = new GameObject(name);
-        border.transform.SetParent(border.transform);
-        border.transform.position = position;
-        BoxCollider2D collider = border.AddComponent<BoxCollider2D>();
-        collider.size = size;
+            // Top border
+            CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness),
+                borders, "top");
+
+            // Bottom border
+            CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness),
+                borders, "bottom");
+        }
+
+        void CreateBorder(Vector2 position, Vector2 size, GameObject borders, string name)
+        {
+            GameObject border = new GameObject(name);
+            border.transform.SetParent(border.transform);
+            border.transform.position = position;
+            BoxCollider2D collider = border.AddComponent<BoxCollider2D>();
+            collider.size = size;
 
             if (drawColliders && borderSprite != null)
             {
@@ -63,10 +74,6 @@ namespace Core
                 renderer.drawMode = SpriteDrawMode.Sliced;
                 renderer.size = size;
             }
-        }
-
-        void Update()
-        {
         }
     }
 }
