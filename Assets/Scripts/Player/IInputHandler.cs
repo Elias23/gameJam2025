@@ -63,8 +63,11 @@ namespace Player
 
         public bool isShootingActionPressed()
         {
-            // handled by UI button
-            return false;
+            if (Input.touchCount <= 0)
+                return false;
+
+            var touchPosScreen = Input.GetTouch(0).position;
+            return touchPosScreen.y > bounds.bottom;
         }
     }
 }
