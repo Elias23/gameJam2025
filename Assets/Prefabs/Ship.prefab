@@ -61,13 +61,13 @@ MonoBehaviour:
   spawnYOffset: 0.6
   garbagePrefabs:
   - {fileID: 5691954807044524314, guid: 8b297afe757bb2f45886c1b62f3fcffc, type: 3}
-  - {fileID: 5691954807044524314, guid: f301b6f4991735b47b7bb3ec18962ec2, type: 3}
-  - {fileID: 5691954807044524314, guid: 3d60fccaab96a9240a50693b5aa4b017, type: 3}
-  - {fileID: 5691954807044524314, guid: 436fa1b64865c6c40babc4fe4028b097, type: 3}
-  - {fileID: 5691954807044524314, guid: c947b76af8490c54ba446fd17b75ec94, type: 3}
-  - {fileID: 5691954807044524314, guid: caa59032ae4c99b419150244006d7045, type: 3}
-  - {fileID: 5691954807044524314, guid: ac6e26d55ba63ad40a82d1dfdebcebe1, type: 3}
-  - {fileID: 5691954807044524314, guid: bc2477168282e414db6c8e62b2ab8a1b, type: 3}
+  - {fileID: 5691954807044524314, guid: c17a849aaa1ff9144bdbc64befcc026a, type: 3}
+  - {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}
+  - {fileID: 5691954807044524314, guid: 07d0185d84fd5194085515aae09553b8, type: 3}
+  - {fileID: 5691954807044524314, guid: 3317f938aa359fd4d90f7d480081346a, type: 3}
+  - {fileID: 5691954807044524314, guid: 98d7e8a13feb9004487d65187c0ce930, type: 3}
+  - {fileID: 5691954807044524314, guid: e7256370c1375af4e9b44dfd8c730cd4, type: 3}
+  - {fileID: 5691954807044524314, guid: 36dd17a00eb90b344ba4c793ab24a3eb, type: 3}
 --- !u!212 &4781919861705456841
 SpriteRenderer:
   m_ObjectHideFlags: 0
