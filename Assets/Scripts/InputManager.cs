@@ -4,29 +4,30 @@ using System.Linq;
 using Assets.RequiredField.Scripts;
 using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
 
-    [RequiredField]
-    [SerializeField] public PlayerController Player;
+    [SerializeField, RequiredField] public PlayerController Player;
+    [SerializeField, RequiredField] public Transform PlayerTransform;
 
-    [SerializeField] private float touchThreshold = 0.2f;
+    [SerializeField] private float touchMinDistanceThreshold = 0.2f;
     private List<IInputHandler> inputHandlers;
 
-    private void Awake()
+    private void Start()
     {
         inputHandlers = new List<IInputHandler>
         {
             new DesktopInputHandler(),
-            new MobileInputHandler(touchThreshold)
+            new MobileInputHandler(touchMinDistanceThreshold)
         };
     }
 
     private void Update()
     {
         // Adding up all the horizontal inputs from all the input handlers
-        float horizontalInput = inputHandlers.Sum(handler => handler.GetHorizontalInput(transform.position));
+        float horizontalInput = inputHandlers.Sum(handler => handler.GetHorizontalInput(PlayerTransform.position));
         Player.MovePlayer(horizontalInput);
 
         if (inputHandlers.Any(input => input.isShootingActionPressed()))

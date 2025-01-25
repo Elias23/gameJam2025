@@ -33,13 +33,13 @@ namespace Core
         {
             if (drawBounds)
             {
-                var bounds = GetGameBounds();
+                var bounds = GetGameBoundsWorldPos();
                 Debug.DrawLine(new Vector3(-1000, bounds.top, 0), new Vector3(1000, bounds.top, 0), Color.red);
                 Debug.DrawLine(new Vector3(-1000, bounds.bottom, 0), new Vector3(1000, bounds.bottom, 0), Color.red);
             }
         }
 
-        public (float top, float bottom) GetGameBounds()
+        public (float top, float bottom) GetGameBoundsWorldPos()
         {
             var width = mainCamera.orthographicSize * 2 * mainCamera.aspect;
             var targetHeight = width / targetAspectRatio;
@@ -49,6 +49,14 @@ namespace Core
                 top: mainCamera.transform.position.y + (targetHeight / 2) + offset,
                 bottom: mainCamera.transform.position.y - (targetHeight / 2) + offset
             );
+        }
+
+        public (float top, float bottom) GetGameBoundsScreenPos()
+        {
+            var worldBounds = GetGameBoundsWorldPos();
+            var top = mainCamera.WorldToScreenPoint(Vector3.up * worldBounds.top).y;
+            var bottom = mainCamera.WorldToScreenPoint(Vector3.up * worldBounds.bottom).y;
+            return (top, bottom);
         }
 
         public float GetWidth()

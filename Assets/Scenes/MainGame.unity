@@ -396,7 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1668671524}
-  touchThreshold: 0.2
+  PlayerTransform: {fileID: 1668671523}
+  touchMinDistanceThreshold: 0.05
 --- !u!1 &1002761948
 GameObject:
   m_ObjectHideFlags: 0

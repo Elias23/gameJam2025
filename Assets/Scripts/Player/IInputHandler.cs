@@ -2,6 +2,10 @@
 
 namespace Player
 {
+    using System;
+    using Core;
+    using Unity.Mathematics.Geometry;
+
     public interface IInputHandler
     {
         float GetHorizontalInput(Vector3 currentPosition);
@@ -27,30 +31,34 @@ namespace Player
 
     public class MobileInputHandler : IInputHandler
     {
-        private Camera camera;
-        private readonly float touchThreshold;
+        private readonly Camera camera;
+        private readonly float touchMinDistanceThreshold;
+        private readonly (float top, float bottom) bounds;
 
-        public MobileInputHandler(float touchThreshold)
+        public MobileInputHandler(float touchMinDistanceThreshold)
         {
-            this.touchThreshold = touchThreshold;
+            this.touchMinDistanceThreshold = touchMinDistanceThreshold;
+            bounds = GameBounds.Instance.GetGameBoundsScreenPos();
+            camera = Camera.main;
         }
 
         public float GetHorizontalInput(Vector3 currentPosition)
         {
-            // cache camera reference
-            if (!camera) camera = Camera.main;
+            if (Input.touchCount <= 0)
+                return 0;
 
-            if (Input.touchCount <= 0) return 0;
+            var touchPosScreen = Input.GetTouch(0).position;
+            var touchPosWorld = camera.ScreenToWorldPoint(touchPosScreen);
 
-            var touch = Input.GetTouch(0);
-            var screenPosition = camera.WorldToScreenPoint(currentPosition);
-            var distanceX = touch.position.x - screenPosition.x;
+            // check if bottom area of screen was touched
+            if (!(touchPosScreen.y <= bounds.bottom))
+                return 0;
 
-            // Slowing down the movement when the touch is closer to the center of the screen
-            var threshold = Screen.width * touchThreshold;
-            var normalizedDistance = Mathf.Clamp01(Mathf.Abs(distanceX) / threshold);
+            var distanceX = touchPosWorld.x - currentPosition.x;
+            if (Mathf.Abs(distanceX) <= touchMinDistanceThreshold)
+                return 0;
 
-            return Mathf.Sign(distanceX) * normalizedDistance;
+            return Mathf.Sign(distanceX);
         }
 
         public bool isShootingActionPressed()
