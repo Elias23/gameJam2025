@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - sprite: {fileID: -1899960161, guid: 9605cada0c2aca748bf281481f5b3930, type: 3}
+  - sprite: {fileID: 5537113650910097080, guid: cc627a1fbdb6af34fa9f2d23c49ee692, type: 3}
     zIndex: -1
+  topOffset: 0.07
+  bottomOffset: 0.1

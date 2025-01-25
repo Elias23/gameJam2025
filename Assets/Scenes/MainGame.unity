@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: useSecondaryRect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5516494337651687310, guid: 0966904ab339ae74c9f44f4807ff39c0, type: 3}
+      propertyPath: backgrounds.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 5537113650910097080, guid: cc627a1fbdb6af34fa9f2d23c49ee692, type: 3}
     - target: {fileID: 6777279091960983445, guid: 0966904ab339ae74c9f44f4807ff39c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -922,9 +926,21 @@ PrefabInstance:
       value: Crabby Player
       objectReference: {fileID: 0}
     - target: {fileID: 462593573520034685, guid: 163d6bbec5063e64ea6b5e9a5ffad1f5, type: 3}
+      propertyPath: m_Size.x
+      value: 2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 462593573520034685, guid: 163d6bbec5063e64ea6b5e9a5ffad1f5, type: 3}
+      propertyPath: m_Size.y
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 462593573520034685, guid: 163d6bbec5063e64ea6b5e9a5ffad1f5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5331409555011819772, guid: b191b0fb4657adc4cb1a4165719497d6, type: 3}
+      objectReference: {fileID: -5331409555011819772, guid: f8c3768ff8c07c140a534dae715b13f7, type: 3}
+    - target: {fileID: 462593573520034685, guid: 163d6bbec5063e64ea6b5e9a5ffad1f5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1565337669800607364, guid: 163d6bbec5063e64ea6b5e9a5ffad1f5, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4
