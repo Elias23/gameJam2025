@@ -10,10 +10,24 @@ namespace Player
 
         [Header("Bubble")] [SerializeField] private GameObject bubblePrefab;
 
+        public static PlayerController Instance { get; private set; }
+
         private float _minX;
         private float _maxX;
         private Camera _mainCamera;
         private Vector2 _screenBounds;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -24,10 +38,7 @@ namespace Player
             transform.position = Vector3.up * bottom;
         }
 
-        public void ShootProjectile()
-        {
-            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-        }
+        public Vector3 GetPlayerPosition() => transform.position;
 
         private void CalculateScreenBounds()
         {

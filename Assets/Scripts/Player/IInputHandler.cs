@@ -1,15 +1,14 @@
-﻿namespace Player
-{
-    using Core;
-    using Unity.VisualScripting;
-    using UnityEngine;
-    using Update = UnityEngine.PlayerLoop.Update;
+﻿using Core;
+using UnityEngine;
 
+namespace Player
+{
     public interface IInputHandler
     {
         void Update(Vector3 currentPosition);
         float GetMovementDirection();
         bool isShootingActionPressed();
+        bool isShootingActionReleased();
     }
 
     public class DesktopInputHandler : IInputHandler
@@ -18,6 +17,7 @@
         {
             // nop
         }
+
         public float GetMovementDirection()
         {
             var keyboardInput = Input.GetAxisRaw("Horizontal");
@@ -27,10 +27,11 @@
             return (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
         }
 
-        public bool isShootingActionPressed()
-        {
-            return Input.GetKeyDown(KeyCode.Space);
-        }
+        public bool isShootingActionPressed() =>
+            Input.GetKeyDown(KeyCode.Space);
+
+        public bool isShootingActionReleased() =>
+            Input.GetKeyUp(KeyCode.Space);
     }
 
     public class MobileInputHandler : IInputHandler
@@ -41,6 +42,7 @@
 
         private float movementDirection;
         private bool isShootingPressed;
+        private bool isShootingReleased;
 
         public MobileInputHandler(float touchMinDistanceThreshold)
         {
@@ -72,23 +74,34 @@
                 var touchPos = touch.position;
                 if (touchPos.y > bounds.bottom)
                 {
-                    // only shoot on new touches
-                    var newTouch = touch.phase == TouchPhase.Began;
-                    isShootingPressed |= newTouch;
+                    HandleShootingAction(touch);
                 }
                 else
                     movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
             }
         }
 
+        private void HandleShootingAction(Touch touch)
+        {
+            var touchPhase = touch.phase;
+            isShootingPressed |= touchPhase == TouchPhase.Began;
+            isShootingReleased |= touchPhase == TouchPhase.Ended;
+        }
+
         private void ResetPerUpdate()
         {
             movementDirection = 0f;
             isShootingPressed = false;
+            isShootingReleased = false;
         }
 
-        public float GetMovementDirection() => movementDirection;
+        public float GetMovementDirection() =>
+            movementDirection;
 
-        public bool isShootingActionPressed() => isShootingPressed;
+        public bool isShootingActionPressed() =>
+            isShootingPressed;
+
+        public bool isShootingActionReleased() =>
+            isShootingReleased;
     }
 }
