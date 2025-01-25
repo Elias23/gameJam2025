@@ -21,7 +21,7 @@ namespace Player
             CalculateScreenBounds();
 
             var (top, bottom) = GameBounds.Instance.GetGameBounds();
-            transform.position = new Vector3(0, bottom, 0);
+            transform.position = Vector3.up * bottom;
         }
 
         public void ShootProjectile()
