@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6777279091960983445}
   - component: {fileID: 5516494337651687310}
   m_Layer: 0
-  m_Name: Background
+  m_Name: BackgroundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - sprite: {fileID: 5537113650910097080, guid: 7de3b4ef83db0154fa663a52fecef8b0, type: 3}
+  - sprite: {fileID: 21300000, guid: c16f2fdeacdf9144fb3a0ee41039a8f1, type: 3}
+    zIndex: -5
+  - sprite: {fileID: 21300000, guid: 5bad5b0a0ef27904fb993acd08cb6224, type: 3}
+    zIndex: -4
+  - sprite: {fileID: 21300000, guid: bd11728b22534844592dfe6000385219, type: 3}
+    zIndex: -2
+  - sprite: {fileID: 21300000, guid: 91ab2f68a4a6aa54fa03de661d3fe834, type: 3}
     zIndex: -1
-  topOffset: 0.07
-  bottomOffset: 0.1
-  parallaxStrength: 0.7
-  maxParallaxOffset: 0.35
+  - sprite: {fileID: 21300000, guid: ad330d22a7b127a45879b8b20904cd77, type: 3}
+    zIndex: 0
+  - sprite: {fileID: 21300000, guid: 22e656b44b096f74cb24ff01b9854640, type: 3}
+    zIndex: 1
+  - sprite: {fileID: 21300000, guid: 2f8152a94ec765a4f91c8c317d7867b4, type: 3}
+    zIndex: 3
+  topOffset: 0.1
+  bottomOffset: 0.25
+  parallaxStrength: 0.05
+  maxParallaxOffset: 0.4
