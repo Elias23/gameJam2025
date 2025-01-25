@@ -128,7 +128,7 @@ namespace Ship
 
         private void DropGarbage(GarbageItem garbage)
         {
-            var garbageObject = Instantiate(garbage.Prefab, transform);
+            var garbageObject = Instantiate(garbage.Prefab, transform.position, Quaternion.identity);
         }
     }
 }
