@@ -50,5 +50,10 @@ namespace Core
                 bottom: mainCamera.transform.position.y - (targetHeight / 2) + offset
             );
         }
+
+        public float GetWidth()
+        {
+            return mainCamera.orthographicSize * 2 * mainCamera.aspect;
+        }
     }
 }

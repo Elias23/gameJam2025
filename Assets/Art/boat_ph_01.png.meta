@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 77f04729036509448b6ba7bec423d78d
+guid: 7d577396cd93e4d45aaacca717b4df6e
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      boat_ph_01_0: -5993576397782157954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
