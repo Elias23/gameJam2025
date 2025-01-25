@@ -66,6 +66,12 @@ namespace Ship
 
         private void Update()
         {
+            if (GameManager.Instance.GameState == GameState.GameCongratulation)
+            {
+                Sink();
+                return;
+            }
+
             MoveShip();
             garbageSpawner.Update(Time.deltaTime);
 
@@ -131,7 +137,17 @@ namespace Ship
         {
             Vector3 spawnPosition = transform.position;
             spawnPosition.y -= spawnYOffset;
-            var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
+
+            // Instantiate garbage
+            Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
+        }
+
+        private void Sink()
+        {
+            // Add sinking component and disable this one
+            var sinkingComponent = gameObject.AddComponent<ShipSinkingBehaviour>();
+            sinkingComponent.Initialize(spriteRenderer);
+            enabled = false;
         }
     }
 }

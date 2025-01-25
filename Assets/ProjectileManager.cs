@@ -75,4 +75,15 @@ public class ProjectileManager : MonoBehaviour
         currentBubbleScript = null;
         currentChargeLevel = 1;
     }
+
+    public void SpawnBubble(Vector3 position, float scale)
+    {
+        var bubble = Instantiate(bubblePrefab, position, Quaternion.identity);
+        var bubbleScript = bubble.GetComponent<BubbleProjectile>();
+        bubbleScript.setSize(scale);
+
+        var sound = shootSounds[Random.Range(0, shootSounds.Count)];
+        SoundManager.Instance.PlaySound(sound);
+        bubbleScript.ReleaseCharge();
+    }
 }

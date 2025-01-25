@@ -15,7 +15,7 @@ namespace Core
         public GameObject gameCongratulationUI;
 
         [Header("Game Settings")] [SerializeField]
-        private float shipHealth = 100f;
+        private float shipHealth = 1;
 
         [SerializeField] private int playerLife = 3;
 
@@ -41,7 +41,7 @@ namespace Core
             if (GameState != GameState.Playing)
             {
                 // slow motion
-                Time.timeScale = 0.2f;
+                Time.timeScale = 0.5f;
             }
         }
 
