@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private float touchMinDistanceThreshold = 0.2f;
     private List<IInputHandler> inputHandlers;
+    private ProjectileManager projectileManager;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class InputManager : MonoBehaviour
             new DesktopInputHandler(),
             new MobileInputHandler(touchMinDistanceThreshold)
         };
+        projectileManager = ProjectileManager.Instance;
     }
 
     private void Update()
@@ -31,12 +33,8 @@ public class InputManager : MonoBehaviour
         Player.MovePlayer(horizontalInput);
 
         if (inputHandlers.Any(input => input.isShootingActionPressed()))
-            Player.ShootProjectile();
-    }
-
-    // Hook for UI interactions
-    public void ShootingActionPressed()
-    {
-        Player.ShootProjectile();
+            projectileManager.ChargeProjectile();
+        if (inputHandlers.Any(input => input.isShootingActionReleased()))
+            projectileManager.FireProjectile();
     }
 }
