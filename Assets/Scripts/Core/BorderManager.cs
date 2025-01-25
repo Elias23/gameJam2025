@@ -64,6 +64,7 @@ namespace Core
         void CreateBorder(Vector2 position, Vector2 size, GameObject borders, string name)
         {
             GameObject border = new GameObject(name);
+            border.tag = name;
             border.transform.SetParent(borders.transform);
             border.transform.position = position;
             BoxCollider2D newCollider = border.AddComponent<BoxCollider2D>();
