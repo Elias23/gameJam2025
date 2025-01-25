@@ -24,6 +24,7 @@ namespace Ship
         [SerializeField] private float minDropInterval = 1f;
         [SerializeField] private float heavyItemCooldown = 5f;
         [SerializeField] private int recentWeightsMemory = 15;
+        [SerializeField] private float spawnYOffset = 15;
 
         [Header("Garbage Items")] [SerializeField]
         private List<GameObject> garbagePrefabs;
@@ -128,7 +129,9 @@ namespace Ship
 
         private void DropGarbage(GarbageItem garbage)
         {
-            var garbageObject = Instantiate(garbage.Prefab, transform.position, Quaternion.identity);
+            Vector3 spawnPosition = transform.position;
+            spawnPosition.y -= spawnYOffset;
+            var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
         }
     }
 }

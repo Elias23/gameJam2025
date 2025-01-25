@@ -12,12 +12,11 @@ namespace Objects
         private bool hasHitBottom = false;
         private GameManager gameManager;
         public int Damage = 1;
-        public float IntialMass = 1.0f;
 
         private void Start()
         {
             gameManager = GameManager.Instance;
-            GetComponent<Rigidbody2D>().mass = IntialMass;
+            GetComponent<Rigidbody2D>().mass = baseWeight;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -31,7 +30,7 @@ namespace Objects
 
             //get Name of Collision Object
             string collisionName = collisionGameObject.tag;
-            switch (tag)
+            switch (collisionName)
             {
                 case "Ship":
                     //Destroy Garbage
@@ -50,12 +49,16 @@ namespace Objects
                     hasHitBottom = true;
                     Debug.Log("Garbage has hit the bottom");
                     gameManager.HandleGarbageDropped();
+                    Destroy(gameObject);
                     break;
                 case "Bubble":
                     //Attach Bubble to Garbage
                     Debug.Log("Bubble has hit the garbage");
                     collisionGameObject.transform.parent = transform;
                     collisionGameObject.GetComponent<BubbleProjectile>().enabled = false;
+                    break;
+                default:
+                    Debug.Log("Garbage has hit something else");
                     break;
             }
 
