@@ -71,7 +71,7 @@ namespace Core
                 return;
             }
 
-            playerLife--;
+            //TODO reactivate playerLife--;
             if (playerLife <= 0)
             {
                 ShowGameOverScreen();

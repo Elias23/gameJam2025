@@ -6,14 +6,14 @@ namespace Ship
 {
     public class GarbageItem
     {
-        public float Weight { get; }
+        public float WeightClass { get; }
         public float SpawnProbability { get; }
 
         public GameObject Prefab { get; }
 
-        public GarbageItem(float weight, float spawnProbability, GameObject prefab)
+        public GarbageItem(float weightClass, float spawnProbability, GameObject prefab)
         {
-            Weight = weight;
+            WeightClass = weightClass;
             SpawnProbability = spawnProbability;
             Prefab = prefab;
         }
@@ -105,11 +105,11 @@ namespace Ship
                 currentProb += type.AdjustedProbability;
                 if (randomValue <= currentProb)
                 {
-                    UpdateRecentWeights(type.Item.Weight);
+                    UpdateRecentWeights(type.Item.WeightClass);
                     lastDropTime = currentTime;
-                    if (type.Item.Weight >= 5f)
+                    if (type.Item.WeightClass >= 5f)
                         lastHeavyDropTime = currentTime;
-                    actualWeightThisMinute += type.Item.Weight;
+                    actualWeightThisMinute += type.Item.WeightClass;
                     return type.Item;
                 }
             }
@@ -126,7 +126,7 @@ namespace Ship
             var probability = item.SpawnProbability;
 
             // Reduce heavy item probability if one was dropped recently
-            if (item.Weight >= 5f &&
+            if (item.WeightClass >= 5f &&
                 currentTime - lastHeavyDropTime < heavyItemCooldown)
             {
                 probability *= 0.2f;
@@ -134,8 +134,8 @@ namespace Ship
 
             // Adjust based on weight target
             var weightDiff = targetWeightPerMinute / 60f - avgRecentWeight;
-            if ((weightDiff > 0 && item.Weight > avgRecentWeight) ||
-                (weightDiff < 0 && item.Weight < avgRecentWeight))
+            if ((weightDiff > 0 && item.WeightClass > avgRecentWeight) ||
+                (weightDiff < 0 && item.WeightClass < avgRecentWeight))
             {
                 probability *= 1.5f;
             }

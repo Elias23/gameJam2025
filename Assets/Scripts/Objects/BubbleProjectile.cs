@@ -18,6 +18,7 @@ public class BubbleProjectile : MonoBehaviour
     private bool isCharging = true;
     private float startTime;
     private float lastHorizontalOffset;
+    private float size;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class BubbleProjectile : MonoBehaviour
 
     public void setSize(float size)
     {
+        this.size = size;
         transform.localScale = Vector3.one * size;
     }
 
@@ -65,6 +67,11 @@ public class BubbleProjectile : MonoBehaviour
         {
             HandleTopCollision();
         }
+    }
+    
+    public float GetSize()
+    {
+        return size;
     }
 
     private void HandleTopCollision()
