@@ -8,7 +8,6 @@ namespace Core
         private float shipHealth = 100f;
 
         [SerializeField] private int playerLife = 3;
-        [SerializeField] private float playerMaxOxygen = 100f;
 
         public static GameManager Instance { get; private set; }
 
