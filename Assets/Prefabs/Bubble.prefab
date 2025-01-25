@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1565337669800607364}
   - component: {fileID: 462593573520034685}
-  - component: {fileID: 2737579132920441618}
+  - component: {fileID: -6167400453424542367}
   m_Layer: 0
-  m_Name: Crabby Player
+  m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9074187217735159194, guid: afefdf1be0b357d4cbef515f645e7dae, type: 3}
+  m_Sprite: {fileID: -9136834448258697486, guid: edcc132734ab37748b36d23e395077a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2737579132920441618
+--- !u!114 &-6167400453424542367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,9 +97,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 312438540338299892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1cc6bcf5513bb4f9e7ecf4e27caf94, type: 3}
+  m_Script: {fileID: 11500000, guid: 56b5e0e83961a7e4388f7114cce0b9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  screenEdgeBuffer: 0.5
-  bubblePrefab: {fileID: 312438540338299892, guid: 980f5bf7b170c0f42a551ec2db11a12b, type: 3}
+  sizeModifier: 1

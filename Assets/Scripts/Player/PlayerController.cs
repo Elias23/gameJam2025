@@ -8,6 +8,8 @@ namespace Player
         [Header("Movement")] [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float screenEdgeBuffer = 0.5f;
 
+        [Header("Bubble")] [SerializeField] private GameObject bubblePrefab;
+
         private float _minX;
         private float _maxX;
         private Camera _mainCamera;
@@ -24,7 +26,7 @@ namespace Player
 
         public void ShootProjectile()
         {
-            Debug.Log("Pew");
+            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
         }
 
         private void CalculateScreenBounds()
