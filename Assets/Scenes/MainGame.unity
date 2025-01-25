@@ -359,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1002761949}
   m_Layer: 0
-  m_Name: '-------------'
+  m_Name: -------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1123386541261848809, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
-      propertyPath: shootSounds.Array.data[2]
+      propertyPath: 'shootSounds.Array.data[2]'
       value: 
       objectReference: {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
     - target: {fileID: 2685515730883658838, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
@@ -1003,9 +1003,9 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
-      propertyPath: garbagePrefabs.Array.data[2]
+      propertyPath: 'garbagePrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}
+      objectReference: {fileID: 5691954807044524314, guid: 3d60fccaab96a9240a50693b5aa4b017, type: 3}
     - target: {fileID: 6640641598132181169, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
