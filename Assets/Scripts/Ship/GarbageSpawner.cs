@@ -51,7 +51,7 @@ namespace Ship
             this.recentWeightsMemory = recentWeightsMemory;
         }
 
-        private void Update(float deltaTime)
+        public void Update(float deltaTime)
         {
             gameTime += deltaTime;
             minuteTimer += deltaTime;
@@ -73,11 +73,10 @@ namespace Ship
             if (currentTime - lastDropTime < minDropInterval) return false;
 
             // Check if we are behind on target difficulty
-            var weightDeficit = (targetWeightPerMinute * (minuteTimer / 60f)) -
-                                actualWeightThisMinute;
+            var weightDeficit = (targetWeightPerMinute * (minuteTimer / 60f)) - actualWeightThisMinute;
 
-            // Higher chance to spawn if behind difficulty
-            var spawnChance = Mathf.Clamp01(weightDeficit / targetWeightPerMinute);
+            // Ensure minimum spawn chance of 10%
+            var spawnChance = Mathf.Max(0.1f, Mathf.Clamp01(weightDeficit / targetWeightPerMinute));
             return Random.value < spawnChance;
         }
 

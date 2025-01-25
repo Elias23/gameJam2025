@@ -66,6 +66,7 @@ namespace Ship
         private void Update()
         {
             MoveShip();
+            garbageSpawner.Update(Time.deltaTime);
 
             if (garbageSpawner.ShouldDropNewGarbage(Time.time))
             {
