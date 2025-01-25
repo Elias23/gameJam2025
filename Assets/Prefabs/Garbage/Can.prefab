@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  baseWeight: 0.5
+  baseWeight: 0.07426351
   baseProbability: 0.25
   Damage: 1
-  IntialMass: 1
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118,7 +117,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
+  m_UseAutoMass: 0
   m_Mass: 0.07426351
   m_LinearDamping: 0
   m_AngularDamping: 0.05
