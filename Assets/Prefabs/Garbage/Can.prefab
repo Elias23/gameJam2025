@@ -35,6 +35,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4521903085192184404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691954807044524314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43897df3577c8004b8dab3c17d1dc37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  baseWeight: 0.5
+  baseProbability: 0.25
+  Damage: 1
+  IntialMass: 1
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105,7 +122,7 @@ Rigidbody2D:
   m_Mass: 0.07426351
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -261,21 +278,3 @@ PolygonCollider2D:
       - {x: 0.175, y: -0.59499997}
       - {x: 0.235, y: -0.59499997}
   m_UseDelaunayMesh: 0
---- !u!114 &-4521903085192184404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5691954807044524314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43897df3577c8004b8dab3c17d1dc37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
-  BubbleDecayRate: 0.1
-  IntialMass: 1
-  moveSpeed: 2
-  baseWeight: 0.5
-  baseProbability: 0.25
