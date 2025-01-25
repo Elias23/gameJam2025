@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.RequiredField.Scripts;
 using Player;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
 
+    [RequiredField]
     [SerializeField] public PlayerController Player;
 
     [SerializeField] private float touchThreshold = 0.2f;
