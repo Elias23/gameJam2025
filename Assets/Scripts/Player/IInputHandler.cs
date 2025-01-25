@@ -71,7 +71,11 @@
             {
                 var touchPos = touch.position;
                 if (touchPos.y > bounds.bottom)
-                    isShootingPressed = true;
+                {
+                    // only shoot on new touches
+                    var newTouch = touch.phase == TouchPhase.Began;
+                    isShootingPressed |= newTouch;
+                }
                 else
                     movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
             }
