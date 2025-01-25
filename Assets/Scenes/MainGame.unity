@@ -857,22 +857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
-      propertyPath: yOffSet
-      value: -0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
-      propertyPath: waveAmplitude
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
-      propertyPath: horizontalSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
-      propertyPath: screenEdgeBuffer
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6640641598132181169, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
