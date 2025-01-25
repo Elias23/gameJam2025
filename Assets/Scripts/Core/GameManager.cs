@@ -9,19 +9,40 @@ namespace Core
         GameCongratulation
     }
 
+    public class GameStateInfo
+    {
+        public GameState GameState { get; private set; }
+        public float ShipHealth { get; private set; }
+        public int PlayerLife { get; private set; }
+        public float TimeScale { get; private set; }
+
+        public GameStateInfo(GameState gameState, float shipHealth, int playerLife, float timeScale)
+        {
+            GameState = gameState;
+            ShipHealth = shipHealth;
+            PlayerLife = playerLife;
+            TimeScale = timeScale;
+        }
+    }
+
     public class GameManager : MonoBehaviour
     {
         public GameObject gameOverUI;
         public GameObject gameCongratulationUI;
 
         [Header("Game Settings")] [SerializeField]
-        private float shipHealth = 1;
+        private float shipHealth = 100;
 
         [SerializeField] private int playerLife = 3;
 
         public static GameManager Instance { get; private set; }
 
         public GameState GameState { get; private set; }
+
+        public GameStateInfo GetGameDebugInfo()
+        {
+            return new GameStateInfo(GameState, shipHealth, playerLife, Time.timeScale);
+        }
 
         private void Awake()
         {

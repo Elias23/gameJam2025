@@ -31,7 +31,7 @@ public class BubbleProjectile : MonoBehaviour
         timeOffset = Random.Range(0f, 2f * Mathf.PI);
 
         // Choose random sprite
-        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
     }
 

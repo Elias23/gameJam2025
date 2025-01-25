@@ -5,8 +5,8 @@ namespace Core
 {
     public class BorderManager : MonoBehaviour
     {
-        public const string Top= "Top Border";
-        public const string Bottom= "Bottom Border";
+        public const string Top = "Top Border";
+        public const string Bottom = "Bottom Border";
         [SerializeField, RequiredField] public GameObject gameWorld;
         private GameBounds gameBounds;
         private (float top, float bottom) bounds;
@@ -16,11 +16,11 @@ namespace Core
         public bool drawColliders = true; // Flag to make drawing optional
         [SerializeField, RequiredField] public Sprite borderSprite; // Assign a sprite in the Inspector
 
-        private Camera camera;
+        private Camera mainCamera;
 
         void Awake()
         {
-            camera = Camera.main;
+            mainCamera = Camera.main;
         }
 
         void Start()
@@ -35,8 +35,8 @@ namespace Core
 
         void CreateBorderColliders()
         {
-            var screenWidth = camera.orthographicSize * 2.0f * Screen.width / Screen.height;
-            var screenHeight = camera.orthographicSize * 2.0f;
+            var screenWidth = mainCamera.orthographicSize * 2.0f * Screen.width / Screen.height;
+            var screenHeight = mainCamera.orthographicSize * 2.0f;
 
             var worldWidth = screenWidth * (1 - 2 * horizontalBorderPercentage);
             var worldHeight = screenHeight * (1 - 2 * verticalBorderPercentage);

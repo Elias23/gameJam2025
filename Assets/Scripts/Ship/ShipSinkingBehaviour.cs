@@ -24,11 +24,11 @@ namespace Ship
             transform.rotation = Quaternion.Euler(0, 0, currentRotation);
 
             var color = spriteRenderer.color;
-            color.a = Mathf.Max(0, color.a - (Time.deltaTime * 0.3f));
+            color.a = Mathf.Max(0, color.a - (Time.deltaTime * 0.35f));
             spriteRenderer.color = color;
 
             // randomly spawn bubbles
-            if (Random.value < 0.07f && color.a >= 0.25f)
+            if (Random.value < 0.05f && color.a >= 0.27f)
             {
                 var pos = transform.position + Random.Range(-0.1f, 0.2f) * Vector3.right;
                 ProjectileManager.Instance.SpawnBubble(pos, Random.Range(0.5f, 0.8f));

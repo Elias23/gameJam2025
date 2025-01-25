@@ -7,7 +7,7 @@ namespace Testing
         [Header("Bubble Prefabs")] [SerializeField]
         private GameObject bubblePrefab;
 
-        private Camera camera;
+        private Camera mainCamera;
 
         private void Update()
         {
@@ -19,12 +19,12 @@ namespace Testing
 
         private void Awake()
         {
-            camera = Camera.main;
+            mainCamera = Camera.main;
         }
 
         private void SpawnBubble()
         {
-            var mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            var mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
             Instantiate(bubblePrefab, mousePosition, Quaternion.identity);
