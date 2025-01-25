@@ -1,5 +1,9 @@
-﻿using Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Core;
+using Objects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Ship
 {
@@ -21,6 +25,9 @@ namespace Ship
         [SerializeField] private float heavyItemCooldown = 5f;
         [SerializeField] private int recentWeightsMemory = 15;
 
+        [Header("Garbage Items")] [SerializeField]
+        private List<GameObject> garbagePrefabs;
+
 
         private GarbageSpawner garbageSpawner;
 
@@ -31,14 +38,26 @@ namespace Ship
         private float time;
         private SpriteRenderer spriteRenderer;
 
+        private void Awake()
+        {
+            var garbageItems = garbagePrefabs
+                .Select(prefab =>
+                    prefab.GetComponent<Garbage>() is { } g
+                        ? new GarbageItem(g.baseWeight, g.baseProbability, prefab)
+                        : null)
+                .Where(gi => gi != null).ToList();
+
+            Debug.LogWarning("Registered garbage items: " + garbageItems.Count);
+
+            garbageSpawner = new GarbageSpawner(garbageItems, baseWeightPerMin, weightIncreasePerMin,
+                minDropInterval, heavyItemCooldown, recentWeightsMemory);
+        }
+
         private void Start()
         {
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
             transform.position = Vector3.up * top;
             topBounds = transform.position.y - yOffSet;
-
-            // Initialize the garbage spawner
-            garbageSpawner = new GarbageSpawner(baseWeightPerMin, weightIncreasePerMin, minDropInterval, 5f, 5);
 
             // Cache the sprite renderer
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,6 +69,7 @@ namespace Ship
 
             if (garbageSpawner.ShouldDropNewGarbage(Time.time))
             {
+                Debug.LogWarning("Dropping garbage");
                 var garbage = garbageSpawner.SelectGarbageType(Time.time);
                 DropGarbage(garbage);
             }
@@ -107,7 +127,7 @@ namespace Ship
 
         private void DropGarbage(GarbageItem garbage)
         {
-            // Ignore for now
+            var garbageObject = Instantiate(garbage.Prefab, transform);
         }
     }
 }

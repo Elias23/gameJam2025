@@ -6,12 +6,17 @@ namespace Ship
 {
     public class GarbageItem
     {
-        public float Weight { get; set; }
-        public float SpawnProbability { get; set; }
+        public float Weight { get; }
+        public float SpawnProbability { get; }
 
-        public float Speed { get; set; }
+        public GameObject Prefab { get; }
 
-        public Sprite Sprite { get; set; }
+        public GarbageItem(float weight, float spawnProbability, GameObject prefab)
+        {
+            Weight = weight;
+            SpawnProbability = spawnProbability;
+            Prefab = prefab;
+        }
     }
 
     public class GarbageSpawner
@@ -32,16 +37,13 @@ namespace Ship
         private float lastHeavyDropTime = 0f;
         private Queue<float> recentWeights = new Queue<float>();
 
-        private List<GarbageItem> garbageTypes = new List<GarbageItem>
-        {
-            new GarbageItem { Weight = 1f, SpawnProbability = 0.4f }, // Light
-            new GarbageItem { Weight = 3f, SpawnProbability = 0.35f }, // Medium
-            new GarbageItem { Weight = 5f, SpawnProbability = 0.25f } // Heavy
-        };
+        private List<GarbageItem> garbageItems;
 
-        public GarbageSpawner(float baseWeightPerMin, float weightIncreasePerMin, float minDropInterval,
+        public GarbageSpawner(List<GarbageItem> garbageItems, float baseWeightPerMin, float weightIncreasePerMin,
+            float minDropInterval,
             float heavyItemCooldown, int recentWeightsMemory)
         {
+            this.garbageItems = garbageItems;
             this.baseWeightPerMin = baseWeightPerMin;
             this.weightIncreasePerMin = weightIncreasePerMin;
             this.minDropInterval = minDropInterval;
@@ -85,7 +87,7 @@ namespace Ship
             var avgRecentWeight = recentWeights.Count > 0 ? recentWeights.Average() : 0f;
 
             // Adjust probabilities based on recent drops
-            var adjustedTypes = garbageTypes.Select(item => new
+            var adjustedTypes = garbageItems.Select(item => new
             {
                 Item = item,
                 AdjustedProbability = CalculateAdjustedProbability(

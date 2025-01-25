@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7380105674659027324}
+  - component: {fileID: -4521903085192184404}
   - component: {fileID: -4069257224397162646}
   - component: {fileID: -2247090911113310284}
   - component: {fileID: 5484471070414331089}
-  - component: {fileID: -4521903085192184404}
   m_Layer: 0
   m_Name: Can
-  m_TagString: Untagged
+  m_TagString: Garbage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +35,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4521903085192184404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691954807044524314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43897df3577c8004b8dab3c17d1dc37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  baseWeight: 0.5
+  baseProbability: 0.25
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -261,15 +276,3 @@ PolygonCollider2D:
       - {x: 0.175, y: -0.59499997}
       - {x: 0.235, y: -0.59499997}
   m_UseDelaunayMesh: 0
---- !u!114 &-4521903085192184404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5691954807044524314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43897df3577c8004b8dab3c17d1dc37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
-  sideMovementAmplitude: 1
+  sideMovementAmplitude: 0.7
   sideMovementFrequency: 2
-  wobbleStrength: 0.5
+  wobbleStrength: 0.4
+  wobbleRampUpTime: 1
 --- !u!1 &9019561576181613537
 GameObject:
   m_ObjectHideFlags: 0

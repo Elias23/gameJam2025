@@ -7,14 +7,17 @@ public class BubbleProjectile : MonoBehaviour
     [Header("Properties")] [SerializeField, RequiredField]
     private float baseSpeed = 5f;
 
-    [SerializeField, RequiredField] private float sideMovementAmplitude = 1f;
+    [SerializeField, RequiredField] private float sideMovementAmplitude = 0.7f;
     [SerializeField, RequiredField] private float sideMovementFrequency = 2f;
-    [SerializeField, RequiredField] private float wobbleStrength = 0.2f;
+    [SerializeField, RequiredField] private float wobbleStrength = 0.4f;
+    [SerializeField, RequiredField] private float wobbleRampUpTime = 1f;
 
     private float topBounds;
     private float timeOffset;
     private Vector3 startPosition;
     private bool isCharging = true;
+    private float startTime;
+    private float lastHorizontalOffset;
 
     void Start()
     {
@@ -34,6 +37,8 @@ public class BubbleProjectile : MonoBehaviour
     {
         isCharging = false;
         startPosition = transform.position;
+        startTime = Time.time;
+        lastHorizontalOffset = 0f;
     }
 
     void Update()
@@ -43,19 +48,17 @@ public class BubbleProjectile : MonoBehaviour
             return;
 
         var time = Time.time + timeOffset;
+        var timeSinceRelease = Time.time - startTime;
+        var effectStrength = Mathf.Min(timeSinceRelease / wobbleRampUpTime, 1f) / transform.localScale.magnitude;
 
-        // Basic upward movement
-        var newPosition = transform.position + Vector3.up * (baseSpeed * Time.deltaTime);
+        var scaledSpeed = baseSpeed * ((transform.localScale.x - 1f) / 2f + 1);
+        var newPosition = transform.position + Vector3.up * (scaledSpeed * Time.deltaTime);
 
-        // Sine wave horizontal movement
-        var horizontalOffset = Mathf.Sin(time * sideMovementFrequency) * sideMovementAmplitude;
+        var targetHorizontalOffset = Mathf.Sin(time * sideMovementFrequency) * sideMovementAmplitude;
+        targetHorizontalOffset += (Mathf.PerlinNoise(time, timeOffset) * 2f - 1f) * wobbleStrength;
 
-        // Add some random wobble
-        var randomWobble = Mathf.PerlinNoise(time, timeOffset) * 2f - 1f;
-        horizontalOffset += randomWobble * wobbleStrength;
-
-        // Apply horizontal movement
-        newPosition.x = startPosition.x + horizontalOffset;
+        lastHorizontalOffset = Mathf.Lerp(lastHorizontalOffset, targetHorizontalOffset, effectStrength);
+        newPosition.x = startPosition.x + lastHorizontalOffset;
         transform.position = newPosition;
 
         if (transform.position.y > topBounds)
