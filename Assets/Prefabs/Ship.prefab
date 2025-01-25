@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &312438540338299892
+--- !u!1 &5161844854520318782
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1565337669800607364}
-  - component: {fileID: 462593573520034685}
-  - component: {fileID: -6167400453424542367}
+  - component: {fileID: 6640641598132181169}
+  - component: {fileID: 4781919861705456841}
+  - component: {fileID: 5981479311289466175}
   m_Layer: 0
-  m_Name: Bubble
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1565337669800607364
+--- !u!4 &6640641598132181169
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312438540338299892}
+  m_GameObject: {fileID: 5161844854520318782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.457, y: 1, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.33, y: 0.33, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &462593573520034685
+--- !u!212 &4781919861705456841
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312438540338299892}
+  m_GameObject: {fileID: 5161844854520318782}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,31 +77,38 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9136834448258697486, guid: edcc132734ab37748b36d23e395077a3, type: 3}
+  m_Sprite: {fileID: -5993576397782157954, guid: 7d577396cd93e4d45aaacca717b4df6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 34.4, y: 25.02}
+  m_Size: {x: 4.4, y: 1.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6167400453424542367
+--- !u!114 &5981479311289466175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312438540338299892}
+  m_GameObject: {fileID: 5161844854520318782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b5e0e83961a7e4388f7114cce0b9ee, type: 3}
+  m_Script: {fileID: 11500000, guid: e86d848f0fc54b7389d2e18818dcdfef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  sideMovementAmplitude: 0.2
-  sideMovementFrequency: 2
-  wobbleStrength: 0.5
-  sizeModifier: 1
+  horizontalSpeed: 5
+  waveAmplitude: 0.1
+  waveFrequency: 1
+  minWaitTime: 0.5
+  maxWaitTime: 2
+  screenEdgeBuffer: 0.5
+  yOffSet: 0.2
+  baseWeightPerMin: 10
+  weightIncreasePerMin: 10
+  minDropInterval: 1
+  heavyItemCooldown: 5
+  recentWeightsMemory: 15

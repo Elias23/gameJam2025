@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Assets.RequiredField.Scripts;
 using Core;
 using UnityEngine;
@@ -16,7 +15,7 @@ public class BorderManager : MonoBehaviour
 
     void Start()
     {
-        bounds = GameBounds.Instance.GetGameBounds();
+        bounds = GameBounds.Instance.GetGameBoundsWorldPos();
 
         if (Application.isPlaying)
         {
@@ -34,21 +33,25 @@ public class BorderManager : MonoBehaviour
 
         GameObject borders = new GameObject("Borders");
         borders.transform.SetParent(gameWorld.transform);
-       
+
         // Left border
-        CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders);
-    
+        CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0), new Vector2(borderThickness, worldHeight),
+            borders);
+
         // Right border
-        CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders);
+        CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0), new Vector2(borderThickness, worldHeight),
+            borders);
 
         // Top border
-        CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness), borders);
+        CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness),
+            borders);
 
         // Bottom border
-        CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness), borders);
+        CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness),
+            borders);
     }
 
-    void CreateBorder(Vector2 position, Vector2 size,GameObject borders)
+    void CreateBorder(Vector2 position, Vector2 size, GameObject borders)
     {
         GameObject border = new GameObject("Border");
         border.transform.SetParent(transform);
@@ -67,6 +70,5 @@ public class BorderManager : MonoBehaviour
 
     void Update()
     {
-
     }
 }

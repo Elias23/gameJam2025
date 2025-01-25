@@ -7,9 +7,9 @@ public class BubbleProjectile : MonoBehaviour
     [Header("Properties")] [SerializeField, RequiredField]
     private float baseSpeed = 5f;
 
-    [SerializeField, RequiredField] private float sideMovementAmplitude = 1f;
+    [SerializeField, RequiredField] private float sideMovementAmplitude = 0.2f;
     [SerializeField, RequiredField] private float sideMovementFrequency = 2f;
-    [SerializeField, RequiredField] private float wobbleStrength = 0.2f;
+    [SerializeField, RequiredField] private float wobbleStrength = 0.5f;
     [SerializeField, RequiredField] private float sizeModifier = 1f;
 
     private float topBounds;
