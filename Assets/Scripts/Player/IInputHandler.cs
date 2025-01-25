@@ -1,18 +1,26 @@
-﻿using UnityEngine;
-
-namespace Player
+﻿namespace Player
 {
+    using Core;
+    using Unity.VisualScripting;
+    using UnityEngine;
+    using Update = UnityEngine.PlayerLoop.Update;
+
     public interface IInputHandler
     {
-        float GetHorizontalInput(Vector3 currentPosition);
+        void Update(Vector3 currentPosition);
+        float GetMovementDirection();
         bool isShootingActionPressed();
     }
 
     public class DesktopInputHandler : IInputHandler
     {
-        public float GetHorizontalInput(Vector3 currentPosition)
+        public void Update(Vector3 currentPosition)
         {
-            float keyboardInput = Input.GetAxisRaw("Horizontal");
+            // nop
+        }
+        public float GetMovementDirection()
+        {
+            var keyboardInput = Input.GetAxisRaw("Horizontal");
             if (keyboardInput != 0)
                 return keyboardInput;
 
@@ -27,36 +35,60 @@ namespace Player
 
     public class MobileInputHandler : IInputHandler
     {
-        private Camera camera;
-        private readonly float touchThreshold;
+        private readonly (float top, float bottom) bounds;
+        private readonly Camera camera;
+        private readonly float touchMinDistanceThreshold;
 
-        public MobileInputHandler(float touchThreshold)
+        private float movementDirection;
+        private bool isShootingPressed;
+
+        public MobileInputHandler(float touchMinDistanceThreshold)
         {
-            this.touchThreshold = touchThreshold;
+            this.touchMinDistanceThreshold = touchMinDistanceThreshold;
+            bounds = GameBounds.Instance.GetGameBoundsScreenPos();
+            camera = Camera.main;
         }
 
-        public float GetHorizontalInput(Vector3 currentPosition)
+        private float CalculateMovementDirection(Vector3 touchPosScreen, Vector3 currentPosition)
         {
-            // cache camera reference
-            if (!camera) camera = Camera.main;
+            var touchPosWorld = camera.ScreenToWorldPoint(touchPosScreen);
 
-            if (Input.touchCount <= 0) return 0;
+            var distanceX = touchPosWorld.x - currentPosition.x;
+            if (Mathf.Abs(distanceX) <= touchMinDistanceThreshold)
+                return 0;
 
-            var touch = Input.GetTouch(0);
-            var screenPosition = camera.WorldToScreenPoint(currentPosition);
-            var distanceX = touch.position.x - screenPosition.x;
-
-            // Slowing down the movement when the touch is closer to the center of the screen
-            var threshold = Screen.width * touchThreshold;
-            var normalizedDistance = Mathf.Clamp01(Mathf.Abs(distanceX) / threshold);
-
-            return Mathf.Sign(distanceX) * normalizedDistance;
+            return Mathf.Sign(distanceX);
         }
 
-        public bool isShootingActionPressed()
+        public void Update(Vector3 currentPlayerPos)
         {
-            // handled by UI button
-            return false;
+            ResetPerUpdate();
+
+            if (Input.touchCount <= 0)
+                return;
+
+            foreach (var touch in Input.touches)
+            {
+                var touchPos = touch.position;
+                if (touchPos.y > bounds.bottom)
+                {
+                    // only shoot on new touches
+                    var newTouch = touch.phase == TouchPhase.Began;
+                    isShootingPressed |= newTouch;
+                }
+                else
+                    movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
+            }
         }
+
+        private void ResetPerUpdate()
+        {
+            movementDirection = 0f;
+            isShootingPressed = false;
+        }
+
+        public float GetMovementDirection() => movementDirection;
+
+        public bool isShootingActionPressed() => isShootingPressed;
     }
 }

@@ -20,7 +20,7 @@ namespace Player
             _mainCamera = Camera.main;
             CalculateScreenBounds();
 
-            var (top, bottom) = GameBounds.Instance.GetGameBounds();
+            var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
             transform.position = Vector3.up * bottom;
         }
 
