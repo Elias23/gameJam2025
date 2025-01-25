@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4781919861705456841}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,33 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5981479311289466175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5161844854520318782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86d848f0fc54b7389d2e18818dcdfef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalSpeed: 5
-  waveAmplitude: 0.1
-  waveFrequency: 1
-  minWaitTime: 0.5
-  maxWaitTime: 2
-  screenEdgeBuffer: 0.5
-  yOffSet: 0.2
-  baseWeightPerMin: 10
-  weightIncreasePerMin: 10
-  minDropInterval: 1
-  heavyItemCooldown: 5
-  recentWeightsMemory: 15
-  garbagePrefabs:
-  - {fileID: 5691954807044524314, guid: 8b297afe757bb2f45886c1b62f3fcffc, type: 3}
-  - {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}
 --- !u!212 &4781919861705456841
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,3 +88,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5981479311289466175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161844854520318782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86d848f0fc54b7389d2e18818dcdfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSpeed: 2.5
+  waveAmplitude: 0.05
+  waveFrequency: 1
+  minWaitTime: 0.5
+  maxWaitTime: 2
+  screenEdgeBuffer: 0.5
+  yOffSet: -0.25
+  baseWeightPerMin: 10
+  weightIncreasePerMin: 10
+  minDropInterval: 1
+  heavyItemCooldown: 5
+  recentWeightsMemory: 15
+  garbagePrefabs:
+  - {fileID: 5691954807044524314, guid: 8b297afe757bb2f45886c1b62f3fcffc, type: 3}
+  - {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}

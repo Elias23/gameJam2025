@@ -8,4 +8,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync("MainGame");
     }
 
+    public void ShowCredits()
+    {
+        SceneManager.LoadSceneAsync("CreditsScene");
+    }
+
 }

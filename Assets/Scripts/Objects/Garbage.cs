@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Objects
@@ -9,50 +10,55 @@ namespace Objects
         [SerializeField] public float baseProbability = 0.5f;
 
         private bool hasHitBottom = false;
+        private GameManager gameManager;
+        public int Damage = 1;
+        public float IntialMass = 1.0f;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
+            gameManager = GameManager.Instance;
+            GetComponent<Rigidbody2D>().mass = IntialMass;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
+            GameObject collisionGameObject = collision.gameObject;
+            Debug.Log("Garbage has collided with " + collisionGameObject.name);
             if (hasHitBottom)
             {
                 return;
             }
 
             //get Name of Collision Object
-            string collisionName = collision.gameObject.name;
-            switch (collisionName)
+            string collisionName = collisionGameObject.tag;
+            switch (tag)
             {
-                case "ship":
+                case "Ship":
                     //Destroy Garbage
                     Destroy(gameObject);
                     Debug.Log("Garbage has hit the ship");
+                    gameManager.HandleShipDamage(Damage);
                     break;
-                case "Crabby Player":
-                    //Destroy Garbage
-                    Destroy(gameObject);
-                    break;
-                case "bottom":
-                    //Lose Life
-                    hasHitBottom = true;
-                    Debug.Log("Garbage has hit the bottom");
-                    break;
-                case "top":
+                case BorderManager.Top:
                     //Destroy Garbage
                     Destroy(gameObject);
                     Debug.Log("Garbage has hit the top");
                     break;
-                default:
+                case "Player":
+                case BorderManager.Bottom:
+                    //Lose Life
+                    hasHitBottom = true;
+                    Debug.Log("Garbage has hit the bottom");
+                    gameManager.HandleGarbageDropped();
+                    break;
+                case "Bubble":
+                    //Attach Bubble to Garbage
+                    Debug.Log("Bubble has hit the garbage");
+                    collisionGameObject.transform.parent = transform;
+                    collisionGameObject.GetComponent<BubbleProjectile>().enabled = false;
                     break;
             }
+
         }
     }
 }
