@@ -11,7 +11,6 @@ namespace Player
     {
         [Header("Movement")] [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float screenEdgeBuffer = 0.5f;
-        [SerializeField] private float touchThreshold = 0.2f;
 
         [Header("Position")] [SerializeField] private float bottomOffset = 1f;
 
@@ -20,17 +19,6 @@ namespace Player
         private Camera _mainCamera;
         private Vector2 _screenBounds;
 
-        private List<IInputHandler> _inputHandlers;
-
-        private void Awake()
-        {
-            _inputHandlers = new List<IInputHandler>
-            {
-                new DesktopInputHandler(),
-                new MobileInputHandler(touchThreshold)
-            };
-        }
-
         private void Start()
         {
             _mainCamera = Camera.main;
@@ -38,12 +26,11 @@ namespace Player
             PositionPlayerAtStart();
         }
 
-        private void Update()
-        {
-            // Adding up all the horizontal inputs from all the input handlers
-            float horizontalInput = _inputHandlers.Sum(handler => handler.GetHorizontalInput(transform.position));
 
-            MovePlayer(horizontalInput);
+
+        public void ShootProjectile()
+        {
+            Debug.Log("Pew");
         }
 
         private void CalculateScreenBounds()
@@ -61,7 +48,7 @@ namespace Player
             transform.position = new Vector3(0f, startY, 0f);
         }
 
-        private void MovePlayer(float horizontalInput)
+        public void MovePlayer(float horizontalInput)
         {
             var movement = new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0, 0);
             var newPosition = transform.position + movement;
