@@ -42,7 +42,7 @@
         private readonly float touchMinDistanceThreshold;
 
         private float movementDirection;
-        private bool isShootingHeld;
+        private bool isShootingPressed;
         private bool isShootingReleased;
 
         public MobileInputHandler(float touchMinDistanceThreshold)
@@ -85,14 +85,14 @@
         private void HandleShootingAction(Touch touch)
         {
             var touchPhase = touch.phase;
-            isShootingHeld |= touchPhase == TouchPhase.Began;
+            isShootingPressed |= touchPhase == TouchPhase.Began ;
             isShootingReleased |= touchPhase == TouchPhase.Ended;
         }
 
         private void ResetPerUpdate()
         {
             movementDirection = 0f;
-            isShootingHeld = false;
+            isShootingPressed = false;
             isShootingReleased = false;
         }
 
@@ -100,7 +100,7 @@
             movementDirection;
 
         public bool isShootingActionPressed() =>
-            isShootingHeld;
+            isShootingPressed;
 
         public bool isShootingActionReleased() =>
             isShootingReleased;
