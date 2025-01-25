@@ -40,7 +40,7 @@ public class ProjectileManager : MonoBehaviour
         var bubble = currentBubbleScript;
         currentChargeLevel += (chargeSpeed * Time.deltaTime);
         currentChargeLevel = Mathf.Min(currentChargeLevel, maxCharge);
-        bubble.setSize(currentChargeLevel);
+        bubble.SetSize(currentChargeLevel);
     }
 
     public void ChargeProjectile()
@@ -80,7 +80,7 @@ public class ProjectileManager : MonoBehaviour
     {
         var bubble = Instantiate(bubblePrefab, position, Quaternion.identity);
         var bubbleScript = bubble.GetComponent<BubbleProjectile>();
-        bubbleScript.setSize(scale);
+        bubbleScript.SetSize(scale);
 
         var sound = shootSounds[Random.Range(0, shootSounds.Count)];
         SoundManager.Instance.PlaySound(sound);

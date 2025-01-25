@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b8b0804628e44094f996f6a1a0b0122c
+guid: 3abddbc0ca0dfb44992cf5f15d7ff924
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7430497848723668472
-    second: Trash_Dose_v01_0
+      213: 5527381968809463071
+    second: Titlepage_Reference_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trash_Dose_v01_0
+      name: Titlepage_Reference_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 155
-        height: 159
+        width: 1750
+        height: 2875
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8028586339191e890800000000000000
-      internalID: -7430497848723668472
+      spriteID: f1d89c48d9435bc40800000000000000
+      internalID: 5527381968809463071
       vertices: []
       indices: 
       edges: []

@@ -12,6 +12,8 @@ public class BubbleProjectile : MonoBehaviour
     [SerializeField, RequiredField] private float wobbleStrength = 0.4f;
     [SerializeField, RequiredField] private float wobbleRampUpTime = 1f;
 
+    [Header("Sprites")] [SerializeField] private Sprite[] sprites;
+
     private float topBounds;
     private float timeOffset;
     private Vector3 startPosition;
@@ -27,9 +29,13 @@ public class BubbleProjectile : MonoBehaviour
 
         // Random starting phase for varied movement
         timeOffset = Random.Range(0f, 2f * Mathf.PI);
+
+        // Choose random sprite
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
     }
 
-    public void setSize(float size)
+    public void SetSize(float size)
     {
         this.size = size;
         transform.localScale = Vector3.one * size;
@@ -68,7 +74,7 @@ public class BubbleProjectile : MonoBehaviour
             HandleTopCollision();
         }
     }
-    
+
     public float GetSize()
     {
         return size;

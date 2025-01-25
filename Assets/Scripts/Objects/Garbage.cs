@@ -6,7 +6,6 @@ namespace Objects
 {
     public class Garbage : MonoBehaviour
     {
-        [Header("Garbage")] [SerializeField] private float moveSpeed = 5f;
         private float baseWeight = 0.08f;
         [SerializeField] public float baseProbability = 0.5f;
         [SerializeField] public float weightClass = 1f;
@@ -20,7 +19,7 @@ namespace Objects
         {
             gameManager = GameManager.Instance;
             rb = GetComponent<Rigidbody2D>();
-            rb.mass = baseWeight*weightClass;
+            rb.mass = baseWeight * weightClass;
             Destroy(gameObject, 10);
         }
 
@@ -79,10 +78,10 @@ namespace Objects
             var force = gameObject.GetComponent<ConstantForce2D>();
             if (!force) force = gameObject.AddComponent<ConstantForce2D>();
             float upforce = 0.25f;
-            float weightFactor = Mathf.Clamp(bubbleSize/weightClass,0.1f,10f);
-            force.force += new Vector2(0, upforce*weightFactor);
+            float weightFactor = Mathf.Clamp(bubbleSize / weightClass, 0.1f, 10f);
+            force.force += new Vector2(0, upforce * weightFactor);
         }
-        
+
         public float GetWeight()
         {
             return baseWeight * weightClass;

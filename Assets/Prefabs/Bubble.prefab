@@ -51,6 +51,10 @@ MonoBehaviour:
   sideMovementFrequency: 2
   wobbleStrength: 0.4
   wobbleRampUpTime: 1
+  sprites:
+  - {fileID: -23757903778239980, guid: 0e57d13078095fa48aeaf2dcbed4619f, type: 3}
+  - {fileID: -2454886186054475535, guid: 89b7bd94e5ade5944b311b8e526e550e, type: 3}
+  - {fileID: 3305518423600886142, guid: b2ee9ca3933fe7048a9e4d019eb28cd8, type: 3}
 --- !u!58 &6117942181891982575
 CircleCollider2D:
   m_ObjectHideFlags: 0
