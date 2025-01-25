@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
       propertyPath: 'garbagePrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}
+      objectReference: {fileID: 5691954807044524314, guid: 3d60fccaab96a9240a50693b5aa4b017, type: 3}
     - target: {fileID: 6640641598132181169, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
