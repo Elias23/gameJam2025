@@ -4,7 +4,9 @@ namespace Core
 {
     public class GameManager : MonoBehaviour
     {
-        public GameObject gameOverUI;    
+        public GameObject gameOverUI;
+        public GameObject gameCongratulationUI;
+        
         [Header("Game Settings")] [SerializeField]
         private float shipHealth = 100f;
 
@@ -29,7 +31,7 @@ namespace Core
             shipHealth -= damage;
             if (shipHealth <= 0)
             {
-                // Game Over
+                gameCongratulation();
             }
         }
 
@@ -45,6 +47,11 @@ namespace Core
         public void gameOver()
         {
             gameOverUI.SetActive(true);
+        }
+
+        public void gameCongratulation()
+        {
+            gameCongratulationUI.SetActive(true);
         }
     }
 }

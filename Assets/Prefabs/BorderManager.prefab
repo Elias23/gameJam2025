@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameWorld: {fileID: 0}
   borderThickness: 1
-  horizontalBorderPercentage: 0.1
-  verticalBorderPercentage: 0.1
+  horizontalBorderPercentage: 0.01
+  verticalBorderPercentage: 0.01
   drawColliders: 0
   borderSprite: {fileID: 7482667652216324306, guid: 0e2680f125c39374d991a57bc3c1bf71, type: 3}
