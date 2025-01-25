@@ -12,8 +12,6 @@ namespace Player
         [Header("Movement")] [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float screenEdgeBuffer = 0.5f;
 
-        [Header("Position")] [SerializeField] private float bottomOffset = 1f;
-
         private float _minX;
         private float _maxX;
         private Camera _mainCamera;
@@ -23,7 +21,6 @@ namespace Player
         {
             _mainCamera = Camera.main;
             CalculateScreenBounds();
-            PositionPlayerAtStart();
         }
 
 
@@ -40,12 +37,6 @@ namespace Player
                     _mainCamera.transform.position.z));
             _minX = -_screenBounds.x + screenEdgeBuffer;
             _maxX = _screenBounds.x - screenEdgeBuffer;
-        }
-
-        private void PositionPlayerAtStart()
-        {
-            var startY = -_screenBounds.y + bottomOffset;
-            transform.position = new Vector3(0f, startY, 0f);
         }
 
         public void MovePlayer(float horizontalInput)
