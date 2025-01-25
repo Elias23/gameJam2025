@@ -4,6 +4,7 @@ namespace Core
 {
     public class GameManager : MonoBehaviour
     {
+        public GameObject gameOverUI;    
         [Header("Game Settings")] [SerializeField]
         private float shipHealth = 100f;
 
@@ -37,8 +38,13 @@ namespace Core
             playerLife--;
             if (playerLife <= 0)
             {
-                // Game Over
+                gameOver();
             }
+        }
+
+        public void gameOver()
+        {
+            gameOverUI.SetActive(true);
         }
     }
 }

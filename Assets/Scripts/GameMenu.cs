@@ -8,4 +8,11 @@ public class GameMenu : MonoBehaviour
         SceneManager.LoadSceneAsync("MainMenu");
     }
 
+    public void Restart()
+    {
+        Debug.Log("Restrart the game to try again...");
+        SceneManager.LoadSceneAsync("MainGame");
+
+    }
+
 }
