@@ -137,11 +137,10 @@ namespace Ship
         {
             Vector3 spawnPosition = transform.position;
             spawnPosition.y -= spawnYOffset;
-
-            // Instantiate garbage
-            Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
+            var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
+            garbageObject.transform.SetParent(transform.parent);
         }
-
+        
         private void Sink()
         {
             // Add sinking component and disable this one

@@ -32,6 +32,7 @@ namespace Player
 
         public bool isShootingActionReleased() =>
             Input.GetKeyUp(KeyCode.Space);
+
     }
 
     public class MobileInputHandler : IInputHandler

@@ -3,6 +3,7 @@ using System.Linq;
 using Core;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
