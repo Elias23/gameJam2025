@@ -15,7 +15,7 @@ public class BubbleProjectile : MonoBehaviour
     {
         transform.localScale *= sizeModifier;
 
-        var (top, bottom) = GameBounds.Instance.GetGameBounds();
+        var (top, _) = GameBounds.Instance.GetGameBoundsWorldPos();
         topBounds = top;
     }
 
@@ -27,7 +27,6 @@ public class BubbleProjectile : MonoBehaviour
         if (transform.position.y > topBounds)
         {
             // TODO: Handle Reached Top Bounds
-
             Destroy(gameObject);
         }
     }

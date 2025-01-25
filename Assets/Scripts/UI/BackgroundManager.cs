@@ -23,7 +23,7 @@ namespace UI
         {
             backgrounds = backgrounds.OrderBy(b => b.zIndex).ToArray();
 
-            var (top, bottom) = Core.GameBounds.Instance.GetGameBounds();
+            var (top, bottom) = Core.GameBounds.Instance.GetGameBoundsWorldPos();
             var width = Core.GameBounds.Instance.GetWidth();
 
             // in world space
