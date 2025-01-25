@@ -5,6 +5,8 @@ namespace Core
 {
     public class BorderManager : MonoBehaviour
     {
+        public const string Top= "Top Border";
+        public const string Bottom= "Bottom Border";
         [SerializeField, RequiredField] public GameObject gameWorld;
         private GameBounds gameBounds;
         private (float top, float bottom) bounds;
@@ -52,20 +54,22 @@ namespace Core
 
             // Top border
             CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness),
-                borders, "top");
+                borders, Top);
 
             // Bottom border
             CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness),
-                borders, "bottom");
+                borders, Bottom);
         }
 
         void CreateBorder(Vector2 position, Vector2 size, GameObject borders, string name)
         {
             GameObject border = new GameObject(name);
-            border.transform.SetParent(border.transform);
+            border.transform.SetParent(borders.transform);
             border.transform.position = position;
-            BoxCollider2D collider = border.AddComponent<BoxCollider2D>();
-            collider.size = size;
+            BoxCollider2D newCollider = border.AddComponent<BoxCollider2D>();
+            Rigidbody2D newRigidbody = border.AddComponent<Rigidbody2D>();
+            newRigidbody.bodyType = RigidbodyType2D.Static;
+            newCollider.size = size;
 
             if (drawColliders && borderSprite != null)
             {
