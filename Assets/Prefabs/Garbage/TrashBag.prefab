@@ -51,6 +51,7 @@ MonoBehaviour:
   baseWeight: 1
   baseProbability: 0.5
   Damage: 1
+  IntialMass: 1
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ Rigidbody2D:
   m_Mass: 0.1790775
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

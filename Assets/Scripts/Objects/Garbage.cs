@@ -17,6 +17,7 @@ namespace Objects
         {
             gameManager = GameManager.Instance;
             GetComponent<Rigidbody2D>().mass = baseWeight;
+            Destroy(gameObject, 10);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -29,39 +30,47 @@ namespace Objects
             }
 
             //get Name of Collision Object
-            string collisionName = collisionGameObject.tag;
-            switch (collisionName)
+            switch (collisionGameObject.tag)
             {
                 case "Ship":
                     //Destroy Garbage
-                    Destroy(gameObject);
                     Debug.Log("Garbage has hit the ship");
+                    Destroy(gameObject);
                     gameManager.HandleShipDamage(Damage);
                     break;
                 case BorderManager.Top:
                     //Destroy Garbage
-                    Destroy(gameObject);
                     Debug.Log("Garbage has hit the top");
+                    Destroy(gameObject);
                     break;
                 case "Player":
                 case BorderManager.Bottom:
                     //Lose Life
-                    hasHitBottom = true;
                     Debug.Log("Garbage has hit the bottom");
+                    hasHitBottom = true;
                     gameManager.HandleGarbageDropped();
                     Destroy(gameObject);
                     break;
                 case "Bubble":
-                    //Attach Bubble to Garbage
-                    Debug.Log("Bubble has hit the garbage");
-                    collisionGameObject.transform.parent = transform;
-                    collisionGameObject.GetComponent<BubbleProjectile>().enabled = false;
+                    HandleBubbleHit(collisionGameObject);
                     break;
                 default:
                     Debug.Log("Garbage has hit something else");
                     break;
             }
+        }
 
+        private void HandleBubbleHit(GameObject collisionGameObject)
+        {
+            //Attach Bubble to Garbage
+            Debug.Log("Bubble has hit the garbage");
+            collisionGameObject.transform.parent = transform;
+            Destroy(collisionGameObject.GetComponent<BubbleProjectile>());
+            Destroy(collisionGameObject.GetComponent<CircleCollider2D>());
+
+            var force = gameObject.GetComponent<ConstantForce2D>();
+            if (!force) force = gameObject.AddComponent<ConstantForce2D>();
+            force.force += new Vector2(0, 0.5f);
         }
     }
 }
