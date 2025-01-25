@@ -132,6 +132,7 @@ namespace Ship
             Vector3 spawnPosition = transform.position;
             spawnPosition.y -= spawnYOffset;
             var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
+            garbageObject.transform.SetParent(transform.parent);
         }
     }
 }
