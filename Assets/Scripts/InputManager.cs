@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
-
     [SerializeField, RequiredField] public PlayerController Player;
     [SerializeField, RequiredField] public Transform PlayerTransform;
 
@@ -26,14 +25,13 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        // Adding up all the horizontal inputs from all the input handlers
-        float horizontalInput = inputHandlers.Sum(handler => handler.GetHorizontalInput(PlayerTransform.position));
+        inputHandlers.ForEach(it => it.Update(PlayerTransform.position));
+
+        float horizontalInput = inputHandlers.Sum(it => it.GetMovementDirection());
         Player.MovePlayer(horizontalInput);
 
         if (inputHandlers.Any(input => input.isShootingActionPressed()))
-        {
-           Player.ShootProjectile();
-        }
+            Player.ShootProjectile();
     }
 
     // Hook for UI interactions

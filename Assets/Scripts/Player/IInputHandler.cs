@@ -1,22 +1,26 @@
-﻿using UnityEngine;
-
-namespace Player
+﻿namespace Player
 {
-    using System;
     using Core;
-    using Unity.Mathematics.Geometry;
+    using Unity.VisualScripting;
+    using UnityEngine;
+    using Update = UnityEngine.PlayerLoop.Update;
 
     public interface IInputHandler
     {
-        float GetHorizontalInput(Vector3 currentPosition);
+        void Update(Vector3 currentPosition);
+        float GetMovementDirection();
         bool isShootingActionPressed();
     }
 
     public class DesktopInputHandler : IInputHandler
     {
-        public float GetHorizontalInput(Vector3 currentPosition)
+        public void Update(Vector3 currentPosition)
         {
-            float keyboardInput = Input.GetAxisRaw("Horizontal");
+            // nop
+        }
+        public float GetMovementDirection()
+        {
+            var keyboardInput = Input.GetAxisRaw("Horizontal");
             if (keyboardInput != 0)
                 return keyboardInput;
 
@@ -31,9 +35,12 @@ namespace Player
 
     public class MobileInputHandler : IInputHandler
     {
+        private readonly (float top, float bottom) bounds;
         private readonly Camera camera;
         private readonly float touchMinDistanceThreshold;
-        private readonly (float top, float bottom) bounds;
+
+        private float movementDirection;
+        private bool isShootingPressed;
 
         public MobileInputHandler(float touchMinDistanceThreshold)
         {
@@ -42,17 +49,9 @@ namespace Player
             camera = Camera.main;
         }
 
-        public float GetHorizontalInput(Vector3 currentPosition)
+        private float CalculateMovementDirection(Vector3 touchPosScreen, Vector3 currentPosition)
         {
-            if (Input.touchCount <= 0)
-                return 0;
-
-            var touchPosScreen = Input.GetTouch(0).position;
             var touchPosWorld = camera.ScreenToWorldPoint(touchPosScreen);
-
-            // check if bottom area of screen was touched
-            if (!(touchPosScreen.y <= bounds.bottom))
-                return 0;
 
             var distanceX = touchPosWorld.x - currentPosition.x;
             if (Mathf.Abs(distanceX) <= touchMinDistanceThreshold)
@@ -61,13 +60,31 @@ namespace Player
             return Mathf.Sign(distanceX);
         }
 
-        public bool isShootingActionPressed()
+        public void Update(Vector3 currentPlayerPos)
         {
-            if (Input.touchCount <= 0)
-                return false;
+            ResetPerUpdate();
 
-            var touchPosScreen = Input.GetTouch(0).position;
-            return touchPosScreen.y > bounds.bottom;
+            if (Input.touchCount <= 0)
+                return;
+
+            foreach (var touch in Input.touches)
+            {
+                var touchPos = touch.position;
+                if (touchPos.y > bounds.bottom)
+                    isShootingPressed = true;
+                else
+                    movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
+            }
         }
+
+        private void ResetPerUpdate()
+        {
+            movementDirection = 0f;
+            isShootingPressed = false;
+        }
+
+        public float GetMovementDirection() => movementDirection;
+
+        public bool isShootingActionPressed() => isShootingPressed;
     }
 }
