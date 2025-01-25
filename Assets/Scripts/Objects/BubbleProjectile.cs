@@ -10,11 +10,12 @@ public class BubbleProjectile : MonoBehaviour
     [SerializeField, RequiredField] private float sideMovementAmplitude = 1f;
     [SerializeField, RequiredField] private float sideMovementFrequency = 2f;
     [SerializeField, RequiredField] private float wobbleStrength = 0.2f;
-    [SerializeField, RequiredField] private float sizeModifier = 1f;
+    [SerializeField, RequiredField] public float sizeModifier = 1f;
 
     private float topBounds;
     private float timeOffset;
     private Vector3 startPosition;
+    private bool isCharging = true;
 
     void Start()
     {
@@ -24,11 +25,20 @@ public class BubbleProjectile : MonoBehaviour
 
         // Random starting phase for varied movement
         timeOffset = Random.Range(0f, 2f * Mathf.PI);
+    }
+
+    public void ReleaseCharge()
+    {
+        isCharging = false;
         startPosition = transform.position;
     }
 
     void Update()
     {
+        // do not move yet while charging
+        if (isCharging)
+            return;
+
         var time = Time.time + timeOffset;
 
         // Basic upward movement

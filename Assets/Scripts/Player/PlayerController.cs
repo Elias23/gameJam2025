@@ -24,11 +24,6 @@ namespace Player
             transform.position = Vector3.up * bottom;
         }
 
-        public void ShootProjectile()
-        {
-            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-        }
-
         private void CalculateScreenBounds()
         {
             _screenBounds =
