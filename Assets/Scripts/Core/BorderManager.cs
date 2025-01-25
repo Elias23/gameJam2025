@@ -16,7 +16,7 @@ public class BorderManager : MonoBehaviour
 
     void Start()
     {
-        bounds = GameBounds.Instance.GetGameBounds();
+        bounds = GameBounds.Instance.GetGameBoundsWorldPos();
 
         if (Application.isPlaying)
         {
@@ -36,22 +36,22 @@ public class BorderManager : MonoBehaviour
         borders.transform.SetParent(gameWorld.transform);
        
         // Left border
-        CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders);
+        CreateBorder(new Vector2(-worldWidth / 2 - borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders,"side");
     
         // Right border
-        CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders);
+        CreateBorder(new Vector2(worldWidth / 2 + borderThickness / 2, 0), new Vector2(borderThickness, worldHeight), borders,"side");
 
         // Top border
-        CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness), borders);
+        CreateBorder(new Vector2(0, bounds.top + borderThickness / 2), new Vector2(worldWidth, borderThickness), borders, "top");
 
         // Bottom border
-        CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness), borders);
+        CreateBorder(new Vector2(0, bounds.bottom - borderThickness / 2), new Vector2(worldWidth, borderThickness), borders,"bottom");
     }
 
-    void CreateBorder(Vector2 position, Vector2 size,GameObject borders)
+    void CreateBorder(Vector2 position, Vector2 size,GameObject borders,string name)
     {
-        GameObject border = new GameObject("Border");
-        border.transform.SetParent(transform);
+        GameObject border = new GameObject(name);
+        border.transform.SetParent(border.transform);
         border.transform.position = position;
         BoxCollider2D collider = border.AddComponent<BoxCollider2D>();
         collider.size = size;
