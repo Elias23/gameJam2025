@@ -102,4 +102,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   screenEdgeBuffer: 0.5
-  bubblePrefab: {fileID: 312438540338299892, guid: 980f5bf7b170c0f42a551ec2db11a12b, type: 3}
+  yOffSet: 0.4

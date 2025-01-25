@@ -7,8 +7,7 @@ namespace Player
     {
         [Header("Movement")] [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float screenEdgeBuffer = 0.5f;
-
-        [Header("Bubble")] [SerializeField] private GameObject bubblePrefab;
+        [SerializeField] private float yOffSet = 0.2f;
 
         public static PlayerController Instance { get; private set; }
 
@@ -35,7 +34,7 @@ namespace Player
             CalculateScreenBounds();
 
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
-            transform.position = Vector3.up * bottom;
+            transform.position = Vector3.up * (bottom + yOffSet);
         }
 
         public Vector3 GetPlayerPosition() => transform.position;

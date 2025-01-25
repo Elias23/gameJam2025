@@ -60,6 +60,6 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: 2f8152a94ec765a4f91c8c317d7867b4, type: 3}
     zIndex: 3
   topOffset: 0.1
-  bottomOffset: 0.25
-  parallaxStrength: 0.05
+  bottomOffset: 0.225
+  parallaxStrength: 0.06
   maxParallaxOffset: 0.4
