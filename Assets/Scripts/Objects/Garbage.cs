@@ -12,11 +12,13 @@ namespace Objects
         private bool hasHitBottom = false;
         private GameManager gameManager;
         public int Damage = 1;
+        private Rigidbody2D rb;
 
         private void Start()
         {
             gameManager = GameManager.Instance;
-            GetComponent<Rigidbody2D>().mass = baseWeight;
+            rb = GetComponent<Rigidbody2D>();
+            rb.mass = baseWeight;
             Destroy(gameObject, 10);
         }
 
@@ -53,6 +55,7 @@ namespace Objects
                     break;
                 case "Bubble":
                     HandleBubbleHit(collisionGameObject);
+                    rb.linearVelocityY = 0;
                     break;
                 default:
                     Debug.Log("Garbage has hit something else");
