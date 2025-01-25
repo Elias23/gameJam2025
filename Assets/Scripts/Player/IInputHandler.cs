@@ -2,6 +2,8 @@
 
 namespace Player
 {
+    using NUnit.Framework.Internal;
+
     public interface IInputHandler
     {
         float GetHorizontalInput(Vector3 currentPosition);
@@ -12,6 +14,7 @@ namespace Player
         public float GetHorizontalInput(Vector3 currentPosition)
         {
             float keyboardInput = Input.GetAxisRaw("Horizontal");
+            Debug.Log($"Keyboard input: {keyboardInput}");
             if (keyboardInput != 0) return keyboardInput;
 
             return (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
