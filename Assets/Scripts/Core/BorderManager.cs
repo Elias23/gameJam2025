@@ -16,7 +16,7 @@ public class BorderManager : MonoBehaviour
 
     void Start()
     {
-        bounds = GameBounds.Instance.GetGameBounds();
+        bounds = GameBounds.Instance.GetGameBoundsWorldPos();
 
         if (Application.isPlaying)
         {
