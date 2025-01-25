@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 87483bd8534a5df4a883fe7e18a61180
+guid: afefdf1be0b357d4cbef515f645e7dae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5930849403202803259
-    second: player-crab_0
+      213: 9074187217735159194
+    second: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-red_19527042_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-crab_0
+      name: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-red_19527042_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 840
-        height: 859
+        x: 249
+        y: 999
+        width: 3440
+        height: 2502
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c962c904e361bda0800000000000000
-      internalID: -5930849403202803259
+      spriteID: a9d8e7a823dfded70800000000000000
+      internalID: 9074187217735159194
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player-crab_0: -5930849403202803259
+      vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-red_19527042_0: 9074187217735159194
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
