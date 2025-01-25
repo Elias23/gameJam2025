@@ -52,7 +52,7 @@ MonoBehaviour:
   minWaitTime: 0.5
   maxWaitTime: 2
   screenEdgeBuffer: 0.5
-  yOffSet: -0.25
+  yOffSet: -0.15
   baseWeightPerMin: 10
   weightIncreasePerMin: 10
   minDropInterval: 1
