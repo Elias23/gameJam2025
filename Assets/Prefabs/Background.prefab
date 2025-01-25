@@ -49,3 +49,5 @@ MonoBehaviour:
     zIndex: -1
   topOffset: 0.07
   bottomOffset: 0.1
+  parallaxStrength: 0.7
+  maxParallaxOffset: 0.35

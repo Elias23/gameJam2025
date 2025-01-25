@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 5516494337651687310, guid: 0966904ab339ae74c9f44f4807ff39c0, type: 3}
+      propertyPath: parallaxStrength
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516494337651687310, guid: 0966904ab339ae74c9f44f4807ff39c0, type: 3}
+      propertyPath: maxParallaxOffset
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6777279091960983445, guid: 0966904ab339ae74c9f44f4807ff39c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -449,6 +457,14 @@ PrefabInstance:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: e29b4822a17f43d40bc4641892f8f9c6, type: 3}
+    - target: {fileID: -1123386541261848809, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
+      propertyPath: shootSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1123386541261848809, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
+      propertyPath: 'shootSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
     - target: {fileID: 2685515730883658838, guid: 6558864b18c1e7e49912b7e458dfe724, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4446411
@@ -978,6 +994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 5981479311289466175, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
+      propertyPath: 'garbagePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5691954807044524314, guid: 494675a0eee14a34fb63f4abbd6c98d2, type: 3}
     - target: {fileID: 6640641598132181169, guid: 8e2c842a9a728694e93d711e9c56ed14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
