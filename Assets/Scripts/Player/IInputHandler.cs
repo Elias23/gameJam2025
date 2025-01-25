@@ -2,6 +2,7 @@
 
 namespace Player
 {
+    using System;
     using NUnit.Framework.Internal;
 
     public interface IInputHandler
@@ -18,6 +19,11 @@ namespace Player
             if (keyboardInput != 0) return keyboardInput;
 
             return (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
+        }
+
+        public bool isShootingActionPressed()
+        {
+            return Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
         }
     }
 
