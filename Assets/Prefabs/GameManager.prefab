@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7252312929749680766}
-  - component: {fileID: -4372481399589988760}
+  - component: {fileID: -1998839893082717555}
   m_Layer: 0
-  m_Name: Player
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4372481399589988760
+--- !u!114 &-1998839893082717555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6623039780341350379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1cc6bcf5513bb4f9e7ecf4e27caf94, type: 3}
+  m_Script: {fileID: 11500000, guid: cda6de89b8464fe1be9fd5fb9e7d76f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  screenEdgeBuffer: 0.5
-  touchThreshold: 0.2
-  bottomOffset: 1
+  targetAspectRatio: 0.9
+  targetVerticalOffset: 0.1
+  drawBounds: 1

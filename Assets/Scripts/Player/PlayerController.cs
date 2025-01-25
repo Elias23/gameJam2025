@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
+using Core;
 using UnityEngine;
 
 namespace Player
 {
-    using System;
-    using UnityEngine.UIElements;
-
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")] [SerializeField] private float moveSpeed = 5f;
@@ -21,9 +17,10 @@ namespace Player
         {
             _mainCamera = Camera.main;
             CalculateScreenBounds();
+
+            var (top, bottom) = GameBounds.Instance.GetGameBounds();
+            transform.position = new Vector3(0, bottom, 0);
         }
-
-
 
         public void ShootProjectile()
         {
