@@ -13,9 +13,8 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private float maxCharge = 2.5f;
 
     [CanBeNull] private BubbleProjectile currentBubbleScript = null;
-
-    private bool isCharging = false;
     private float currentChargeLevel = 1f;
+
 
     public static ProjectileManager Instance { get; private set; }
 
