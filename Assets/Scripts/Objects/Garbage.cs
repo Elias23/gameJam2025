@@ -60,6 +60,7 @@ namespace Objects
                     Debug.Log("Garbage has hit the bottom");
                     hasHitBottom = true;
                     gameManager.HandleGarbageDropped();
+                    Destroy(forceComponent);
                     Destroy(GetComponent<Rigidbody2D>());
                     Destroy(GetComponent<PolygonCollider2D>());
                     break;
