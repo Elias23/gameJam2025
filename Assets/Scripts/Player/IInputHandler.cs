@@ -20,6 +20,12 @@ namespace Player
 
         public float GetMovementDirection()
         {
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+                Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.MovementKeysPressed);
+            }
+
             var keyboardInput = Input.GetAxisRaw("Horizontal");
             if (keyboardInput != 0)
                 return keyboardInput;
@@ -32,7 +38,6 @@ namespace Player
 
         public bool isShootingActionReleased() =>
             Input.GetKeyUp(KeyCode.Space);
-
     }
 
     public class MobileInputHandler : IInputHandler
@@ -78,7 +83,14 @@ namespace Player
                     HandleShootingAction(touch);
                 }
                 else
+                {
+                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.MovementKeysPressed);
+                    }
+
                     movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
+                }
             }
         }
 

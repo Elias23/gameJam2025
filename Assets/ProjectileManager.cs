@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Assets.RequiredField.Scripts;
+using Core;
 using JetBrains.Annotations;
 using Player;
 using UnityEngine;
@@ -63,6 +64,17 @@ public class ProjectileManager : MonoBehaviour
 
         // release bubble
         currentBubbleScript.ReleaseCharge();
+
+
+        // Tutorial event: normal shot
+        TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.BubbleShot);
+
+
+        // Tutorial event: charged shot
+        if (maxCharge - currentChargeLevel < 0.1f)
+        {
+            TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.ChargedBubbleShot);
+        }
 
         var sound = shootSounds[Random.Range(0, shootSounds.Count)];
         SoundManager.Instance.PlaySound(sound);

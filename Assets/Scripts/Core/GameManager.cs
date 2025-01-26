@@ -35,6 +35,9 @@ namespace Core
 
         [SerializeField] private int playerLife = 3;
 
+        [Header("Game Prefabs")] [SerializeField]
+        GameObject TutorialManagerPrefab;
+
         public static GameManager Instance { get; private set; }
 
         public GameState GameState { get; private set; }
@@ -50,6 +53,7 @@ namespace Core
             {
                 Instance = this;
                 GameState = GameState.Playing;
+                InitializeTutorial();
             }
             else
             {
@@ -78,6 +82,8 @@ namespace Core
                 return;
             }
 
+            TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.GarbageRepelled);
+
             shipHealth -= damage;
             if (shipHealth <= 0)
             {
@@ -96,6 +102,15 @@ namespace Core
             if (playerLife <= 0)
             {
                 ShowGameOverScreen();
+            }
+        }
+
+        private void InitializeTutorial()
+        {
+            if (!GameStore.IsTutorialCompleted)
+            {
+                Instantiate(TutorialManagerPrefab);
+                GameStore.IsTutorialCompleted = true;
             }
         }
 

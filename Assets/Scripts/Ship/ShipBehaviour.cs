@@ -25,6 +25,7 @@ namespace Ship
         [SerializeField] private float heavyItemCooldown = 5f;
         [SerializeField] private int recentWeightsMemory = 15;
         [SerializeField] private float spawnYOffset = 15;
+        [SerializeField] private float initialGarbageDelay = 2f;
 
         [Header("Garbage Items")] [SerializeField]
         private List<GameObject> garbagePrefabs;
@@ -38,6 +39,9 @@ namespace Ship
         private float topBounds;
         private float time;
         private SpriteRenderer spriteRenderer;
+        private bool hasReachedInitialPosition = false;
+        private float garbageDelayTimer;
+        private bool canSpawnGarbage;
 
         private void Awake()
         {
@@ -57,11 +61,22 @@ namespace Ship
         private void Start()
         {
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
-            transform.position = Vector3.up * top;
-            topBounds = transform.position.y - yOffSet;
+            var screenBounds = GameBounds.Instance.GetWidth() / 2;
+
+            // Start position outside screen
+            transform.position = new Vector3(-screenBounds * 2, top - yOffSet, 0);
+            topBounds = top - yOffSet;
+
+            // Initial target in middle
+            targetPosition = new Vector3(0, top - yOffSet, 0);
+            isWaiting = false;
 
             // Cache the sprite renderer
             spriteRenderer = GetComponent<SpriteRenderer>();
+
+            // Delay garbage spawning until ship reaches initial position
+            garbageDelayTimer = initialGarbageDelay;
+            canSpawnGarbage = false;
         }
 
         private void Update()
@@ -73,14 +88,8 @@ namespace Ship
             }
 
             MoveShip();
-            garbageSpawner.Update(Time.deltaTime);
 
-            if (garbageSpawner.ShouldDropNewGarbage(Time.time))
-            {
-                Debug.LogWarning("Dropping garbage");
-                var garbage = garbageSpawner.SelectGarbageType(Time.time);
-                DropGarbage(garbage);
-            }
+            TrySpawnGarbage();
         }
 
         private void MoveShip()
@@ -133,6 +142,34 @@ namespace Ship
             transform.position = currentPos;
         }
 
+        private void TrySpawnGarbage()
+        {
+            if (hasReachedInitialPosition)
+            {
+                if (!canSpawnGarbage)
+                {
+                    garbageDelayTimer -= Time.deltaTime;
+                    if (garbageDelayTimer <= 0)
+                    {
+                        canSpawnGarbage = true;
+                    }
+
+                    return;
+                }
+
+                garbageSpawner.Update(Time.deltaTime);
+                if (garbageSpawner.ShouldDropNewGarbage(Time.time))
+                {
+                    var garbage = garbageSpawner.SelectGarbageType(Time.time);
+                    DropGarbage(garbage);
+                }
+            }
+            else if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            {
+                hasReachedInitialPosition = true;
+            }
+        }
+
         private void DropGarbage(GarbageItem garbage)
         {
             Vector3 spawnPosition = transform.position;
@@ -140,7 +177,7 @@ namespace Ship
             var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
             garbageObject.transform.SetParent(transform.parent);
         }
-        
+
         private void Sink()
         {
             // Add sinking component and disable this one
