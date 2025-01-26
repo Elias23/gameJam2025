@@ -91,6 +91,12 @@ namespace UI
             spriteRenderer.sprite = bg.sprite;
             spriteRenderer.sortingOrder = bg.zIndex;
 
+            if (bg.sprite.name.StartsWith("Overlay"))
+            {
+                // set alpha to 0.5 for overlay sprites
+                spriteRenderer.color = new Color(1, 1, 1, 0.2f);
+            }
+
             bgObject.transform.localScale = new Vector3(baseScaleX * widthScale, scaleY, 1);
 
             var centerOffsetY = (gameplayRegion.y + gameplayRegion.height / 2) - (spriteRect.y + spriteRect.height / 2);
