@@ -11,6 +11,7 @@ namespace Objects
         [SerializeField] public float weightClass = 1f;
 
         private bool hasHitBottom = false;
+        private int hitCounter = 0;
         private GameManager gameManager;
         [SerializeField, RequiredField] public int damageMultiplier = 10;
         private Rigidbody2D rb;
@@ -20,30 +21,31 @@ namespace Objects
             gameManager = GameManager.Instance;
             rb = GetComponent<Rigidbody2D>();
             rb.mass = baseWeight * weightClass;
-            Destroy(gameObject, 10);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            GameObject collisionGameObject = collision.gameObject;
-            Debug.Log("Garbage has collided with " + collisionGameObject.name);
+            var collisionGameObject = collision.gameObject;
             if (hasHitBottom)
-            {
                 return;
-            }
+
 
             //get Name of Collision Object
             switch (collisionGameObject.tag)
             {
                 case "Ship":
+                    if (hitCounter == 0)
+                        return; // only collide with ship once we have been hit by a bubble
+
                     //Destroy Garbage
-                    Debug.Log("Garbage has hit the ship");
                     Destroy(gameObject);
                     gameManager.HandleShipDamage(damageMultiplier * GetWeight());
                     break;
                 case BorderManager.Top:
+                    if (hitCounter == 0)
+                        return; // only collide once we have been hit by a bubble
+
                     //Destroy Garbage
-                    Debug.Log("Garbage has hit the top");
                     Destroy(gameObject);
                     break;
                 case "Player":
@@ -68,18 +70,21 @@ namespace Objects
         private void HandleBubbleHit(GameObject collisionGameObject)
         {
             //Attach Bubble to Garbage
+            hitCounter++;
             Debug.Log("Bubble has hit the garbage");
             collisionGameObject.transform.parent = transform;
-            var bubbleProjectile = collisionGameObject.GetComponent<BubbleProjectile>();
-            float bubbleSize = bubbleProjectile.GetSize();
-            Destroy(bubbleProjectile);
+            var bubbleProjectileScript = collisionGameObject.GetComponent<BubbleProjectile>();
+            float bubbleSize = bubbleProjectileScript.GetSize();
+            Destroy(bubbleProjectileScript);
             Destroy(collisionGameObject.GetComponent<CircleCollider2D>());
 
-            var force = gameObject.GetComponent<ConstantForce2D>();
-            if (!force) force = gameObject.AddComponent<ConstantForce2D>();
+            // add buoyant force
+            var forceComponent = gameObject.GetComponent<ConstantForce2D>();
+            if (!forceComponent) forceComponent = gameObject.AddComponent<ConstantForce2D>();
+
             float upforce = 0.25f;
             float weightFactor = Mathf.Clamp(bubbleSize / weightClass, 0.1f, 10f);
-            force.force += new Vector2(0, upforce * weightFactor);
+            forceComponent.force += new Vector2(0, upforce * weightFactor);
         }
 
         public float GetWeight()
