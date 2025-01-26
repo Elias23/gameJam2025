@@ -63,5 +63,10 @@ namespace Core
         {
             return mainCamera.orthographicSize * 2 * mainCamera.aspect;
         }
+
+        public float GetHeight()
+        {
+            return mainCamera.orthographicSize * 2;
+        }
     }
 }

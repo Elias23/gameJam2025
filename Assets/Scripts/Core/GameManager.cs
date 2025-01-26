@@ -141,5 +141,15 @@ namespace Core
         {
             return shipHealth / shipMaxHealth;
         }
+
+        public int GetPlayerLife()
+        {
+            return playerLife;
+        }
+
+        public int GetMaxPlayerLife()
+        {
+            return playerMaxLife;
+        }
     }
 }

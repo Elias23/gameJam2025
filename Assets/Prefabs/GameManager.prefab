@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7252312929749680766}
   - component: {fileID: -1998839893082717555}
   - component: {fileID: 8695686535457991306}
+  - component: {fileID: 2234923896041687009}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -65,3 +66,19 @@ MonoBehaviour:
   shipMaxHealth: 75
   playerMaxLife: 3
   TutorialManagerPrefab: {fileID: 2600911808981536826, guid: 690fc52b47a97214e837b6840931d7cd, type: 3}
+--- !u!114 &2234923896041687009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623039780341350379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6572b3242334ef2a9bb8af49bf3b09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 1899982541919167157, guid: d83559c7b8ffb394fad8c449cfdc45de, type: 3}
+  bottomYOffset: -1
+  heartSpacing: 0.07
+  heartPadding: 0.07

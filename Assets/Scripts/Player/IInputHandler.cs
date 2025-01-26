@@ -49,7 +49,7 @@ namespace Player
         private bool isShootingPressed;
         private bool isShootingReleased;
 
-        private float touchMinDistanceThreshold = 0.2f;
+        private float touchMinDistanceThreshold = 0.05f;
 
         private Vector3? lastTouchPos;
 
