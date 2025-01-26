@@ -57,21 +57,18 @@ public class ProjectileManager : MonoBehaviour
             Debug.LogWarning("Trying to fire a bubble even though none is charging");
             return;
         }
-
-        // release bubble
-        currentBubbleScript.ReleaseCharge();
-
-
+        
         // Tutorial event: normal shot
         TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.BubbleShot);
 
-
         // Tutorial event: charged shot
-        if (maxCharge - currentChargeLevel < 0.1f)
+        if (maxCharge - currentChargeLevel < 0.5f)
         {
             TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.ChargedBubbleShot);
         }
 
+        // release bubble
+        currentBubbleScript.ReleaseCharge();
         SoundManager.Instance.PlayBubbleSound();
 
         ResetCharge();

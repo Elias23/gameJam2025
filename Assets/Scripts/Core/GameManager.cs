@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Core
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public enum GameState
     {
         Playing,
@@ -44,6 +47,7 @@ namespace Core
 
         private float shipHealth;
         private int playerLife;
+        private Camera mainCamera;
 
         public GameStateInfo GetGameDebugInfo()
         {
@@ -142,6 +146,25 @@ namespace Core
             return shipHealth / shipMaxHealth;
         }
 
+        public IEnumerator ShakeScreen(float duration, float magnitude)
+        {
+            var originalPos = mainCamera.transform.localPosition;
+
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                float xOffset = Random.Range(-0.5f, 0.5f) * magnitude;
+                float yOffset = Random.Range(-0.5f, 0.5f) * magnitude;
+
+                mainCamera.transform.localPosition = new Vector3(xOffset, yOffset, originalPos.z);
+
+                elapsedTime += Time.deltaTime;
+                // Wait for one frame
+                yield return null;
+            }
+            mainCamera.transform.localPosition = originalPos;
+        }
+        
         public int GetPlayerLife()
         {
             return playerLife;
@@ -151,5 +174,6 @@ namespace Core
         {
             return playerMaxLife;
         }
+
     }
 }
