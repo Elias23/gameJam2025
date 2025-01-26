@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Assets.RequiredField.Scripts;
 using Core;
 using JetBrains.Annotations;
@@ -16,9 +15,6 @@ public class ProjectileManager : MonoBehaviour
 
     [CanBeNull] private BubbleProjectile currentBubbleScript = null;
     private float currentChargeLevel = 1f;
-
-    [Header("Sounds")] [SerializeField] private List<AudioClip> shootSounds;
-
 
     public static ProjectileManager Instance { get; private set; }
 
@@ -76,8 +72,7 @@ public class ProjectileManager : MonoBehaviour
             TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.ChargedBubbleShot);
         }
 
-        var sound = shootSounds[Random.Range(0, shootSounds.Count)];
-        SoundManager.Instance.PlaySound(sound);
+        SoundManager.Instance.PlayBubbleSound();
 
         ResetCharge();
     }
@@ -94,8 +89,7 @@ public class ProjectileManager : MonoBehaviour
         var bubbleScript = bubble.GetComponent<BubbleProjectile>();
         bubbleScript.SetSize(scale);
 
-        var sound = shootSounds[Random.Range(0, shootSounds.Count)];
-        SoundManager.Instance.PlaySound(sound);
+        SoundManager.Instance.PlayBubbleSound();
         bubbleScript.ReleaseCharge();
     }
 }

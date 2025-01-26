@@ -50,3 +50,5 @@ MonoBehaviour:
   shootSounds:
   - {fileID: 8300000, guid: e29b4822a17f43d40bc4641892f8f9c6, type: 3}
   - {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
+  - {fileID: 8300000, guid: 67924689af222824c8d433ef2e7e26b9, type: 3}
+  - {fileID: 8300000, guid: 8b56a6cc14e76524bb52f06a314bc18b, type: 3}

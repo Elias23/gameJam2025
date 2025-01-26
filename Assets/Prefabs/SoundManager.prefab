@@ -44,3 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772a0acdfb28e0f458a57680b0be82f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleSounds:
+  - {fileID: 8300000, guid: e29b4822a17f43d40bc4641892f8f9c6, type: 3}
+  - {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
+  - {fileID: 8300000, guid: 67924689af222824c8d433ef2e7e26b9, type: 3}
+  - {fileID: 8300000, guid: 8b56a6cc14e76524bb52f06a314bc18b, type: 3}
+  hitGroundSounds:
+  - {fileID: 8300000, guid: 513dee85e4b9eab40869927567ded869, type: 3}
+  - {fileID: 8300000, guid: 8f69f66216cf78e4d8c7897fbfdeeb47, type: 3}
+  hitShipSounds:
+  - {fileID: 8300000, guid: 3be81251bbfd3c1468e1687065195cb5, type: 3}
+  - {fileID: 8300000, guid: 50fecbe2e3ce78c41acc0525016ddf21, type: 3}
+  - {fileID: 8300000, guid: 3b8e2ca0e6e808f4fb55bc3280fdd5b6, type: 3}
+  menuButtonSound: {fileID: 8300000, guid: ff8f8e01462382541a1dc77250b51555, type: 3}
+  shipHornSound: {fileID: 8300000, guid: 441d8cf45af279f479d9eadf0c3d8548, type: 3}
+  ambienceLoopSound: {fileID: 8300000, guid: 96d27a4b13d8c35488ea68d5820a93c7, type: 3}

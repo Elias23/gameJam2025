@@ -60,6 +60,8 @@ namespace Ship
 
         private void Start()
         {
+            SoundManager.Instance.PlayShipHornSound();
+
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
             var screenBounds = GameBounds.Instance.GetWidth() / 2;
 

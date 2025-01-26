@@ -82,6 +82,8 @@ namespace Core
                 return;
             }
 
+            SoundManager.Instance.PlayHitShipSound();
+
             TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.GarbageRepelled);
 
             shipHealth -= damage;
@@ -97,6 +99,8 @@ namespace Core
             {
                 return;
             }
+
+            SoundManager.Instance.PlayHitGroundSound();
 
             //TODO reactivate playerLife--;
             if (playerLife <= 0)
