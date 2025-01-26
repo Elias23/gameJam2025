@@ -108,7 +108,7 @@ namespace Core
 
             SoundManager.Instance.PlayHitGroundSound();
 
-            //TODO reactivate playerLife--;
+            playerLife--;
             if (playerLife <= 0)
             {
                 ShowGameOverScreen();
