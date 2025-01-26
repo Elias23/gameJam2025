@@ -31,9 +31,9 @@ namespace Core
         public GameObject gameCongratulationUI;
 
         [Header("Game Settings")] [SerializeField]
-        private float shipHealth = 100;
+        private float shipMaxHealth = 100;
 
-        [SerializeField] private int playerLife = 3;
+        [SerializeField] private int playerMaxLife = 3;
 
         [Header("Game Prefabs")] [SerializeField]
         GameObject TutorialManagerPrefab;
@@ -41,6 +41,9 @@ namespace Core
         public static GameManager Instance { get; private set; }
 
         public GameState GameState { get; private set; }
+
+        private float shipHealth;
+        private int playerLife;
 
         public GameStateInfo GetGameDebugInfo()
         {
@@ -54,6 +57,9 @@ namespace Core
                 Instance = this;
                 GameState = GameState.Playing;
                 InitializeTutorial();
+
+                shipHealth = shipMaxHealth;
+                playerLife = playerMaxLife;
             }
             else
             {
@@ -129,6 +135,11 @@ namespace Core
             GameState = GameState.GameCongratulation;
             gameCongratulationUI.SetActive(true);
             PlayerState.Instance.isWin();
+        }
+
+        public float GetShipHealthPercentage()
+        {
+            return shipHealth / shipMaxHealth;
         }
     }
 }

@@ -27,6 +27,11 @@ namespace Ship
         [SerializeField] private float spawnYOffset = 15;
         [SerializeField] private float initialGarbageDelay = 2f;
 
+        [Header("Sprites")] [SerializeField] private Sprite fullLifeSprite;
+        [SerializeField] private Sprite lessThanTwoThirdsLifeSprite;
+        [SerializeField] private Sprite lessThanOneThirdLifeSprite;
+        [SerializeField] private Sprite sinkingSprite;
+
         [Header("Garbage Items")] [SerializeField]
         private List<GameObject> garbagePrefabs;
 
@@ -88,6 +93,8 @@ namespace Ship
                 Sink();
                 return;
             }
+
+            UpdateSprite();
 
             MoveShip();
 
@@ -190,18 +197,39 @@ namespace Ship
         private static float getInitialVelocity(float weightClass) =>
             weightClass switch
             {
-                <= 5 =>  -2f,
+                <= 5 => -2f,
                 <= 10 => -1f,
-                <= 15 =>  -0.8f,
-                _ =>  -0.2f
+                <= 15 => -0.8f,
+                _ => -0.2f
             };
 
         private void Sink()
         {
             // Add sinking component and disable this one
+            spriteRenderer.sprite = sinkingSprite;
             var sinkingComponent = gameObject.AddComponent<ShipSinkingBehaviour>();
             sinkingComponent.Initialize(spriteRenderer);
             enabled = false;
+        }
+
+        private void UpdateSprite()
+        {
+            if (!spriteRenderer) return;
+
+            var health = GameManager.Instance.GetShipHealthPercentage();
+
+            if (health > 0.66f)
+            {
+                spriteRenderer.sprite = fullLifeSprite;
+            }
+            else if (health > 0.33f)
+            {
+                spriteRenderer.sprite = lessThanTwoThirdsLifeSprite;
+            }
+            else
+            {
+                spriteRenderer.sprite = lessThanOneThirdLifeSprite;
+            }
         }
     }
 }
