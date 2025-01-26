@@ -10,6 +10,7 @@ TagManager:
   - Garbage
   - Bottom Border
   - Top Border
+  - side
   layers:
   - Default
   - TransparentFX
