@@ -1,29 +1,29 @@
-using Assets.RequiredField.Scripts;
 using Core;
 using UnityEngine;
 
 namespace Objects
 {
     using Unity.Collections;
+    using UnityEngine.Serialization;
 
     public class Garbage : MonoBehaviour
     {
-        [SerializeField] public float baseProbability = 0.5f;
+        [FormerlySerializedAs("baseProbability")]
+        [SerializeField] public float spawnProbability = 0.5f;
         [SerializeField] public float weightClass = 1f;
         [SerializeField] public int HitsNeededToFLoat = 2;
 
         private bool hasHitBottom = false;
-        [SerializeField] private int hitCounter = 0;
+        private int hitCounter = 0;
         private GameManager gameManager;
-        [SerializeField, RequiredField] public int damageMultiplier = 10;
-        private Rigidbody2D rb;
+        private Rigidbody2D rigidBody;
 
         private void Start()
         {
             hitCounter = 0;
             gameManager = GameManager.Instance;
-            rb = GetComponent<Rigidbody2D>();
-            rb.mass = weightClass;
+            rigidBody = GetComponent<Rigidbody2D>();
+            rigidBody.mass = weightClass;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -40,7 +40,7 @@ namespace Objects
 
                     //Destroy Garbage
                     Destroy(gameObject);
-                    // gameManager.HandleShipDamage(damageMultiplier * GetWeight());
+                    gameManager.HandleShipDamage(GetWeight());
                     break;
                 case BorderManager.Top:
                     if (hitCounter == 0)
@@ -90,9 +90,10 @@ namespace Objects
             if (hitCounter == HitsNeededToFLoat)
                 return 10f; // massive bonus when counter reached
 
-            var gravitationalForce = rb.mass * Physics2D.gravity.y;
-            var upforce = -gravitationalForce / (float)HitsNeededToFLoat;
-            return upforce * 1.2f;
+            // calculate force per hit to float
+            var gravitationalForce = rigidBody.mass * Physics2D.gravity.y;
+            var upForce = -gravitationalForce / (float)HitsNeededToFLoat;
+            return upForce * 1.2f;
         }
 
         public float GetWeight()

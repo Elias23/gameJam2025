@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43897df3577c8004b8dab3c17d1dc37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseProbability: 0.3
+  spawnProbability: 0.3
   weightClass: 8
   HitsNeededToFLoat: 8
-  damageMultiplier: 32
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118,7 +117,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1790775
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1

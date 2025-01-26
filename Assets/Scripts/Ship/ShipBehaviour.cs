@@ -48,7 +48,7 @@ namespace Ship
             var garbageItems = garbagePrefabs
                 .Select(prefab =>
                     prefab.GetComponent<Garbage>() is { } g
-                        ? new GarbageItem(g.GetWeight(), g.baseProbability, prefab)
+                        ? new GarbageItem(g.GetWeight(), g.spawnProbability, prefab)
                         : null)
                 .Where(gi => gi != null).ToList();
 
