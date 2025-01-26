@@ -42,6 +42,19 @@ namespace Core
 
         private void SetupTutorial()
         {
+            // Platform-specific instructions
+            string moveInstructions = Application.isMobilePlatform
+                ? "You can move around by tapping the screen"
+                : "You can move around using the arrow keys";
+
+            string shootInstructions = Application.isMobilePlatform
+                ? "Tap to shoot bubbles"
+                : "Press space to shoot bubbles";
+
+            string chargeInstructions = Application.isMobilePlatform
+                ? "Hold your finger on the screen"
+                : "Hold space";
+
             var ships = Object.FindObjectsByType<ShipBehaviour>(FindObjectsSortMode.None);
             foreach (var ship in ships)
             {
@@ -54,19 +67,19 @@ namespace Core
             ));
 
             tutorialSteps.Add(new EventCountStep(
-                "You can move around using the arrow keys",
+                moveInstructions,
                 EventCountStep.TutorialEvent.MovementKeysPressed,
                 3
             ));
 
             tutorialSteps.Add(new EventCountStep(
-                "Great! Now tap to shoot bubbles!",
+                shootInstructions,
                 EventCountStep.TutorialEvent.BubbleShot,
                 5
             ));
 
             tutorialSteps.Add(new EventCountStep(
-                "Hold to charge a bigger bubble - it's faster and packs more punch!",
+                $"{chargeInstructions} to charge a bigger bubble - it's faster and packs more punch!",
                 EventCountStep.TutorialEvent.ChargedBubbleShot,
                 1
             ));
