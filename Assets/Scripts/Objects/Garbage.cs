@@ -4,23 +4,26 @@ using UnityEngine;
 
 namespace Objects
 {
+    using Unity.Collections;
+
     public class Garbage : MonoBehaviour
     {
-        private float baseWeight = 0.08f;
         [SerializeField] public float baseProbability = 0.5f;
         [SerializeField] public float weightClass = 1f;
+        [SerializeField] public int HitsNeededToFLoat = 2;
 
         private bool hasHitBottom = false;
-        private int hitCounter = 0;
+        [SerializeField] private int hitCounter = 0;
         private GameManager gameManager;
         [SerializeField, RequiredField] public int damageMultiplier = 10;
         private Rigidbody2D rb;
 
         private void Start()
         {
+            hitCounter = 0;
             gameManager = GameManager.Instance;
             rb = GetComponent<Rigidbody2D>();
-            rb.mass = baseWeight * weightClass;
+            rb.mass = weightClass;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -29,8 +32,6 @@ namespace Objects
             if (hasHitBottom)
                 return;
 
-
-            //get Name of Collision Object
             switch (collisionGameObject.tag)
             {
                 case "Ship":
@@ -39,7 +40,7 @@ namespace Objects
 
                     //Destroy Garbage
                     Destroy(gameObject);
-                    gameManager.HandleShipDamage(damageMultiplier * GetWeight());
+                    // gameManager.HandleShipDamage(damageMultiplier * GetWeight());
                     break;
                 case BorderManager.Top:
                     if (hitCounter == 0)
@@ -59,7 +60,6 @@ namespace Objects
                     break;
                 case "Bubble":
                     HandleBubbleHit(collisionGameObject);
-                    rb.linearVelocityY = 0;
                     break;
                 default:
                     Debug.Log("Garbage has hit something else");
@@ -82,14 +82,22 @@ namespace Objects
             var forceComponent = gameObject.GetComponent<ConstantForce2D>();
             if (!forceComponent) forceComponent = gameObject.AddComponent<ConstantForce2D>();
 
-            float upforce = 0.25f;
-            float weightFactor = Mathf.Clamp(bubbleSize / weightClass, 0.1f, 10f);
-            forceComponent.force += new Vector2(0, upforce * weightFactor);
+            forceComponent.force += new Vector2(0, CalculateForceForBouyancy() );
+        }
+
+        private float CalculateForceForBouyancy()
+        {
+            if (hitCounter == HitsNeededToFLoat)
+                return 10f; // massive bonus when counter reached
+
+            var gravitationalForce = rb.mass * Physics2D.gravity.y;
+            var upforce = -gravitationalForce / (float)HitsNeededToFLoat;
+            return upforce * 1.2f;
         }
 
         public float GetWeight()
         {
-            return baseWeight * weightClass;
+            return weightClass;
         }
     }
 }
