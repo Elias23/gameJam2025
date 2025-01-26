@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Title_CRABBY_v01_0: -8431309343990916431
+      Title_CRABBY_v01_1: -7945746932374847865
+      Title_CRABBY_v01_2: 8274566027105485057
+      Title_CRABBY_v01_3: 3717358614898956509
+      Title_CRABBY_v01_4: -1459280828287292008
+      Title_CRABBY_v01_5: 522406027009599605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

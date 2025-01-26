@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Title_CLEANER_v01_0: -7864089668395311007
+      Title_CLEANER_v01_1: -2586928124551605059
+      Title_CLEANER_v01_2: -6882840618208526756
+      Title_CLEANER_v01_3: 8194170141149271671
+      Title_CLEANER_v01_4: 3747290967597753605
+      Title_CLEANER_v01_5: 3368780700752851830
+      Title_CLEANER_v01_6: 6212895040648676806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
