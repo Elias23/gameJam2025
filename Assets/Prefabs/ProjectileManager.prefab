@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2685515730883658838}
-  - component: {fileID: -1123386541261848809}
+  - component: {fileID: 25713225721444547}
   m_Layer: 0
   m_Name: ProjectileManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1123386541261848809
+--- !u!114 &25713225721444547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8089031250495071323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8155b27411ef0944fa3dd06d52ed9a47, type: 3}
+  m_Script: {fileID: 11500000, guid: 33fcc64a6d596e84aa6afad68668a1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 589299665702502475, guid: 8c9ac497d1089e746be97b9ac05ce54c, type: 3}
-  chargeSpeed: 4
-  maxCharge: 3
-  shootSounds:
-  - {fileID: 8300000, guid: e29b4822a17f43d40bc4641892f8f9c6, type: 3}
-  - {fileID: 8300000, guid: 77ec6deab2330bc44a3b583a3955c950, type: 3}
-  - {fileID: 8300000, guid: 67924689af222824c8d433ef2e7e26b9, type: 3}
-  - {fileID: 8300000, guid: 8b56a6cc14e76524bb52f06a314bc18b, type: 3}
+  chargeSpeed: 3
+  maxCharge: 4

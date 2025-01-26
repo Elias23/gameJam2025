@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1565337669800607364}
   - component: {fileID: 462593573520034685}
   - component: {fileID: 2737579132920441618}
+  - component: {fileID: 8067541395623274838}
   - component: {fileID: -3979788574387549014}
   m_Layer: 0
   m_Name: Crabby Player
@@ -104,6 +105,20 @@ MonoBehaviour:
   moveSpeed: 6
   screenEdgeBuffer: 0.5
   yOffSet: 0.4
+--- !u!114 &8067541395623274838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312438540338299892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d2b60ff97a7044c91778d684420207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  oldState: 0
 --- !u!95 &-3979788574387549014
 Animator:
   serializedVersion: 7
