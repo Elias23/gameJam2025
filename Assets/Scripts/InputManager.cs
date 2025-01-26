@@ -3,11 +3,9 @@ using System.Linq;
 using Core;
 using Player;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private float touchMinDistanceThreshold = 0.2f;
     private List<IInputHandler> inputHandlers;
     private ProjectileManager projectileManager;
 
@@ -16,7 +14,7 @@ public class InputManager : MonoBehaviour
         inputHandlers = new List<IInputHandler>
         {
             new DesktopInputHandler(),
-            new MobileInputHandler(touchMinDistanceThreshold)
+            new MobileInputHandler()
         };
         projectileManager = ProjectileManager.Instance;
     }

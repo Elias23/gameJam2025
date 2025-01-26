@@ -44,22 +44,27 @@ namespace Player
     {
         private readonly (float top, float bottom) bounds;
         private readonly Camera camera;
-        private readonly float touchMinDistanceThreshold;
 
         private float movementDirection;
         private bool isShootingPressed;
         private bool isShootingReleased;
 
-        public MobileInputHandler(float touchMinDistanceThreshold)
+        private float touchMinDistanceThreshold = 0.2f;
+
+        private Vector3? lastTouchPos;
+
+        public MobileInputHandler()
         {
-            this.touchMinDistanceThreshold = touchMinDistanceThreshold;
             bounds = GameBounds.Instance.GetGameBoundsScreenPos();
             camera = Camera.main;
         }
 
-        private float CalculateMovementDirection(Vector3 touchPosScreen, Vector3 currentPosition)
+        private float CalculateMovementDirection(Vector3? touchPosScreen, Vector3 currentPosition)
         {
-            var touchPosWorld = camera.ScreenToWorldPoint(touchPosScreen);
+            if (!touchPosScreen.HasValue)
+                return 0;
+
+            var touchPosWorld = camera.ScreenToWorldPoint(touchPosScreen.Value);
 
             var distanceX = touchPosWorld.x - currentPosition.x;
             if (Mathf.Abs(distanceX) <= touchMinDistanceThreshold)
@@ -72,26 +77,21 @@ namespace Player
         {
             ResetPerUpdate();
 
-            if (Input.touchCount <= 0)
-                return;
-
             foreach (var touch in Input.touches)
             {
-                var touchPos = touch.position;
-                if (touchPos.y > bounds.bottom)
-                {
-                    HandleShootingAction(touch);
-                }
-                else
-                {
-                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                        TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.MovementKeysPressed);
-                    }
+                lastTouchPos = touch.position;
 
-                    movementDirection += CalculateMovementDirection(touchPos, currentPlayerPos);
+                HandleShootingAction(touch);
+
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.MovementKeysPressed);
                 }
+
+                movementDirection += CalculateMovementDirection(touch.position, currentPlayerPos);
             }
+
+            movementDirection = CalculateMovementDirection(lastTouchPos, currentPlayerPos);
         }
 
         private void HandleShootingAction(Touch touch)
