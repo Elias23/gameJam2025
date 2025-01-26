@@ -53,8 +53,8 @@ MonoBehaviour:
   maxWaitTime: 2
   screenEdgeBuffer: 0.5
   yOffSet: -0.15
-  baseWeightPerMin: 10
-  weightIncreasePerMin: 10
+  baseWeightPerMin: 50
+  weightIncreasePerMin: 40
   minDropInterval: 1
   heavyItemCooldown: 5
   recentWeightsMemory: 15

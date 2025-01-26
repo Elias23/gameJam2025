@@ -20,7 +20,7 @@ namespace Ship
         [Header("Garbage Spawner")] [SerializeField]
         private float baseWeightPerMin = 10f;
 
-        [SerializeField] private float weightIncreasePerMin = 10f;
+        [SerializeField] private float weightIncreasePerMin = 100f;
         [SerializeField] private float minDropInterval = 1f;
         [SerializeField] private float heavyItemCooldown = 5f;
         [SerializeField] private int recentWeightsMemory = 15;
