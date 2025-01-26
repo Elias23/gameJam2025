@@ -94,23 +94,18 @@ namespace Core
             ));
 
             tutorialSteps.Add(new TimedStep(
-                "Those polluters! We need to protect our home!",
-                2.5f
-            ));
-
-            tutorialSteps.Add(new TimedStep(
                 "Quick! Use your bubbles to bounce their garbage back at them!",
                 3f
             ));
 
             tutorialSteps.Add(new EventCountStep(
-                "Hit them with their own trash! Try reflecting one piece",
+                "Hit them with their own trash!",
                 EventCountStep.TutorialEvent.GarbageRepelled,
                 1
             ));
 
             tutorialSteps.Add(new TimedStep(
-                "Perfect! Keep it up - let's teach them to respect our ocean!",
+                "Perfect! Keep defending our ocean!",
                 4f
             ));
         }
