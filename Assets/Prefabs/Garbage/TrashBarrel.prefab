@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnProbability: 0.75
   weightClass: 12
-  HitsNeededToFLoat: 12
+  HitsNeededToFloat: 15
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
   m_ObjectHideFlags: 0

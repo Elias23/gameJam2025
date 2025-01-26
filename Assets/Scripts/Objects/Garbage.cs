@@ -11,7 +11,7 @@ namespace Objects
         [FormerlySerializedAs("baseProbability")]
         [SerializeField] public float spawnProbability = 0.5f;
         [SerializeField] public float weightClass = 1f;
-        [SerializeField] public int HitsNeededToFLoat = 2;
+        [SerializeField] public int HitsNeededToFloat = 2;
 
         private bool hasHitBottom = false;
         private int hitCounter = 0;
@@ -89,12 +89,12 @@ namespace Objects
 
         private float CalculateForceForBouyancy()
         {
-            if (hitCounter == HitsNeededToFLoat)
+            if (hitCounter == HitsNeededToFloat)
                 return 10f; // massive bonus when counter reached
 
             // calculate force per hit to float
             var gravitationalForce = rigidBody.mass * Physics2D.gravity.y;
-            var upForce = -gravitationalForce / (float)HitsNeededToFLoat;
+            var upForce = -gravitationalForce / (float)HitsNeededToFloat;
             return upForce * 1.2f;
         }
 
