@@ -77,8 +77,9 @@ namespace Player
         {
             ResetPerUpdate();
 
-            foreach (var touch in Input.touches)
+            if (Input.touchCount > 0)
             {
+                var touch = Input.GetTouch(0);
                 lastTouchPos = touch.position;
 
                 HandleShootingAction(touch);

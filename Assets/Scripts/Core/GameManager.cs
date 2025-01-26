@@ -1,10 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Core
 {
-    using System.Collections;
-    using System.Collections.Generic;
-
     public enum GameState
     {
         Playing,
@@ -92,6 +90,7 @@ namespace Core
                 return;
             }
 
+            StartCoroutine(ShakeScreen(0.2f, 0.05f));
             SoundManager.Instance.PlayHitShipSound();
 
             TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.GarbageRepelled);
@@ -110,6 +109,7 @@ namespace Core
                 return;
             }
 
+            StartCoroutine(ShakeScreen(0.2f, 0.3f));
             SoundManager.Instance.PlayHitGroundSound();
 
             playerLife--;
@@ -162,9 +162,10 @@ namespace Core
                 // Wait for one frame
                 yield return null;
             }
+
             mainCamera.transform.localPosition = originalPos;
         }
-        
+
         public int GetPlayerLife()
         {
             return playerLife;
@@ -174,6 +175,5 @@ namespace Core
         {
             return playerMaxLife;
         }
-
     }
 }
