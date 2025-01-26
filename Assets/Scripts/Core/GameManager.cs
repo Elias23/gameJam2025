@@ -93,6 +93,7 @@ namespace Core
                 return;
             }
 
+            StartCoroutine(ShakeScreen(0.2f, 0.05f));
             SoundManager.Instance.PlayHitShipSound();
 
             TutorialManager.Instance?.HandleTutorialEvent(EventCountStep.TutorialEvent.GarbageRepelled);
