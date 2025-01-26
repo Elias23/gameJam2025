@@ -6,7 +6,7 @@ namespace UI
 {
     public class DebugUI : MonoBehaviour
     {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR
         [SerializeField] private TextMeshProUGUI debugText;
         [SerializeField] private float updateInterval = 0.5f;
 
