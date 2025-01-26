@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 namespace Ship
 {
+    using System.Collections;
+
     public class ShipBehaviour : MonoBehaviour
     {
         [Header("Movement")] [SerializeField] private float horizontalSpeed = 5f;
@@ -79,7 +81,7 @@ namespace Ship
             isWaiting = false;
 
             // Cache the sprite renderer
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
             // Delay garbage spawning until ship reaches initial position
             garbageDelayTimer = initialGarbageDelay;
@@ -244,5 +246,31 @@ namespace Ship
                 spriteRenderer.sprite = lessThanOneThirdLifeSprite;
             }
         }
+
+        public void ShakeShip()
+        {
+            StartCoroutine(ShakeInternal(0.2f, 0.05f));
+        }
+
+        private IEnumerator ShakeInternal(float duration, float magnitude)
+        {
+            var originalPos = transform.position;
+
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                float xOffset = Random.Range(-0.5f, 0.5f) * magnitude;
+                float yOffset = Random.Range(-0.5f, 0.5f) * magnitude;
+
+                transform.position = originalPos + new Vector3(xOffset, yOffset, originalPos.z);
+
+                elapsedTime += Time.deltaTime;
+                // Wait for one frame
+                yield return null;
+            }
+
+            transform.position = originalPos;
+        }
+
     }
 }

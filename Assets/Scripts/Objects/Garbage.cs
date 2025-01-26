@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Objects
 {
+    using Ship;
     using Unity.Collections;
     using UnityEngine.Serialization;
 
@@ -46,6 +47,8 @@ namespace Objects
                     //Destroy Garbage
                     Destroy(gameObject);
                     gameManager.HandleShipDamage(GetWeight());
+                    var ship = collisionGameObject.GetComponent<ShipBehaviour>();
+                    if (ship) ship.ShakeShip();
                     break;
                 case BorderManager.Top:
                     if (hitCounter == 0)
