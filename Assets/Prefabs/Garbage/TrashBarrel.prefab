@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseProbability: 0.75
   weightClass: 12
+  HitsNeededToFLoat: 12
   damageMultiplier: 28
 --- !u!212 &-4069257224397162646
 SpriteRenderer:
