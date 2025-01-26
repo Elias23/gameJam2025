@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crab_WinAnim2_v01_0: 9097962099878116554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
