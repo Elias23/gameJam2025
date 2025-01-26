@@ -28,7 +28,7 @@ namespace Ship
             spriteRenderer.color = color;
 
             // randomly spawn bubbles
-            if (Random.value < 0.05f && color.a >= 0.27f)
+            if (Random.value < 0.1f && color.a >= 0.27f)
             {
                 var pos = transform.position + Random.Range(-0.1f, 0.2f) * Vector3.right;
                 ProjectileManager.Instance.SpawnBubble(pos, Random.Range(0.5f, 0.8f));

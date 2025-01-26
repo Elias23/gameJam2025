@@ -950,6 +950,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1359353614}
     - target: {fileID: 8695686535457991306, guid: af8fb7a26e8257f4a98f7afec8f01532, type: 3}
+      propertyPath: shipMaxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695686535457991306, guid: af8fb7a26e8257f4a98f7afec8f01532, type: 3}
       propertyPath: gameCongratulationUI
       value: 
       objectReference: {fileID: 1032811794}
