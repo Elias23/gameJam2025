@@ -49,7 +49,7 @@ public class BubbleProjectile : MonoBehaviour
         lastHorizontalOffset = 0f;
     }
 
-    void Update()
+    private void Update()
     {
         // do not move yet while charging
         if (isCharging)

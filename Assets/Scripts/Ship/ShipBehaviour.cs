@@ -20,7 +20,7 @@ namespace Ship
         [Header("Garbage Spawner")] [SerializeField]
         private float baseWeightPerMin = 10f;
 
-        [SerializeField] private float weightIncreasePerMin = 10f;
+        [SerializeField] private float weightIncreasePerMin = 100f;
         [SerializeField] private float minDropInterval = 1f;
         [SerializeField] private float heavyItemCooldown = 5f;
         [SerializeField] private int recentWeightsMemory = 15;
@@ -48,7 +48,7 @@ namespace Ship
             var garbageItems = garbagePrefabs
                 .Select(prefab =>
                     prefab.GetComponent<Garbage>() is { } g
-                        ? new GarbageItem(g.GetWeight(), g.baseProbability, prefab)
+                        ? new GarbageItem(g.GetWeight(), g.spawnProbability, prefab)
                         : null)
                 .Where(gi => gi != null).ToList();
 

@@ -62,6 +62,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 0}
   gameCongratulationUI: {fileID: 0}
-  shipHealth: 100
+  shipHealth: 75
   playerLife: 3
   TutorialManagerPrefab: {fileID: 2600911808981536826, guid: 690fc52b47a97214e837b6840931d7cd, type: 3}

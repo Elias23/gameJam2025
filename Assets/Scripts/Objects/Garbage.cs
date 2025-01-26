@@ -1,49 +1,57 @@
-using Assets.RequiredField.Scripts;
 using Core;
 using UnityEngine;
 
 namespace Objects
 {
+    using Unity.Collections;
+    using UnityEngine.Serialization;
+
     public class Garbage : MonoBehaviour
     {
-        private float baseWeight = 0.08f;
-        [SerializeField] public float baseProbability = 0.5f;
+        [FormerlySerializedAs("baseProbability")]
+        [SerializeField] public float spawnProbability = 0.5f;
         [SerializeField] public float weightClass = 1f;
+        [SerializeField] public int HitsNeededToFloat = 2;
 
         private bool hasHitBottom = false;
+        private int hitCounter = 0;
         private GameManager gameManager;
-        [SerializeField, RequiredField] public int damageMultiplier = 10;
-        private Rigidbody2D rb;
+        private Rigidbody2D rigidBody;
+        private ConstantForce2D forceComponent;
 
         private void Start()
         {
+            hitCounter = 0;
             gameManager = GameManager.Instance;
-            rb = GetComponent<Rigidbody2D>();
-            rb.mass = baseWeight * weightClass;
-            Destroy(gameObject, 10);
+            rigidBody = GetComponent<Rigidbody2D>();
+            rigidBody.mass = weightClass;
+
+            forceComponent = gameObject.GetComponent<ConstantForce2D>();
+            if (!forceComponent) forceComponent = gameObject.AddComponent<ConstantForce2D>();
+            forceComponent.force = Vector2.zero;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            GameObject collisionGameObject = collision.gameObject;
-            Debug.Log("Garbage has collided with " + collisionGameObject.name);
+            var collisionGameObject = collision.gameObject;
             if (hasHitBottom)
-            {
                 return;
-            }
 
-            //get Name of Collision Object
             switch (collisionGameObject.tag)
             {
                 case "Ship":
+                    if (hitCounter == 0)
+                        return; // only collide with ship once we have been hit by a bubble
+
                     //Destroy Garbage
-                    Debug.Log("Garbage has hit the ship");
                     Destroy(gameObject);
-                    gameManager.HandleShipDamage(damageMultiplier * GetWeight());
+                    gameManager.HandleShipDamage(GetWeight());
                     break;
                 case BorderManager.Top:
+                    if (hitCounter == 0)
+                        return; // only collide once we have been hit by a bubble
+
                     //Destroy Garbage
-                    Debug.Log("Garbage has hit the top");
                     Destroy(gameObject);
                     break;
                 case "Player":
@@ -57,7 +65,6 @@ namespace Objects
                     break;
                 case "Bubble":
                     HandleBubbleHit(collisionGameObject);
-                    rb.linearVelocityY = 0;
                     break;
                 default:
                     Debug.Log("Garbage has hit something else");
@@ -68,23 +75,32 @@ namespace Objects
         private void HandleBubbleHit(GameObject collisionGameObject)
         {
             //Attach Bubble to Garbage
+            hitCounter++;
             Debug.Log("Bubble has hit the garbage");
             collisionGameObject.transform.parent = transform;
-            var bubbleProjectile = collisionGameObject.GetComponent<BubbleProjectile>();
-            float bubbleSize = bubbleProjectile.GetSize();
-            Destroy(bubbleProjectile);
+            var bubbleProjectileScript = collisionGameObject.GetComponent<BubbleProjectile>();
+            float bubbleSize = bubbleProjectileScript.GetSize();
+            Destroy(bubbleProjectileScript);
             Destroy(collisionGameObject.GetComponent<CircleCollider2D>());
 
-            var force = gameObject.GetComponent<ConstantForce2D>();
-            if (!force) force = gameObject.AddComponent<ConstantForce2D>();
-            float upforce = 0.25f;
-            float weightFactor = Mathf.Clamp(bubbleSize / weightClass, 0.1f, 10f);
-            force.force += new Vector2(0, upforce * weightFactor);
+            // add buoyant force
+            forceComponent.force += new Vector2(0, CalculateForceForBouyancy() );
+        }
+
+        private float CalculateForceForBouyancy()
+        {
+            if (hitCounter == HitsNeededToFloat)
+                return 10f; // massive bonus when counter reached
+
+            // calculate force per hit to float
+            var gravitationalForce = rigidBody.mass * Physics2D.gravity.y;
+            var upForce = -gravitationalForce / (float)HitsNeededToFloat;
+            return upForce * 1.2f;
         }
 
         public float GetWeight()
         {
-            return baseWeight * weightClass;
+            return weightClass;
         }
     }
 }
