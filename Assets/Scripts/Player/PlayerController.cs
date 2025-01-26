@@ -34,7 +34,7 @@ namespace Player
             CalculateScreenBounds();
 
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
-            transform.position = Vector3.up * (bottom + yOffSet);
+            transform.position = new Vector3(0, bottom + yOffSet, -0.1f);
         }
 
         public Vector3 GetPlayerPosition() => transform.position;
