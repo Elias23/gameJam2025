@@ -8,15 +8,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> bubbleSounds;
     [SerializeField] private List<AudioClip> hitGroundSounds;
     [SerializeField] private List<AudioClip> hitShipSounds;
-    [SerializeField] private List<AudioClip> dropGarbageSounds;
     [SerializeField] private AudioClip menuButtonSound;
     [SerializeField] private AudioClip shipHornSound;
-
-    [SerializeField] private AudioClip mainThemeSound;
+    [SerializeField] private AudioClip ambienceLoopSound;
 
     private Camera mainCamera;
-
-    private AudioSource mainTheme;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -24,8 +21,6 @@ public class SoundManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            mainTheme = gameObject.AddComponent<AudioSource>();
         }
         else
         {
@@ -35,16 +30,10 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMainTheme();
-    }
-
-    private void PlayMainTheme()
-    {
-        mainTheme.volume = 0.25f;
-        mainTheme.clip = mainThemeSound;
-        mainTheme.loop = true;
-
-        mainTheme.Play();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = ambienceLoopSound;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     private Camera GetMainCamera()
@@ -83,11 +72,5 @@ public class SoundManager : MonoBehaviour
     public void PlayShipHornSound()
     {
         AudioSource.PlayClipAtPoint(shipHornSound, GetMainCamera().transform.position);
-    }
-
-    public void PlayDropGarbageSound()
-    {
-        var randomIndex = Random.Range(0, dropGarbageSounds.Count);
-        AudioSource.PlayClipAtPoint(dropGarbageSounds[randomIndex], GetMainCamera().transform.position);
     }
 }

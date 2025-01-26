@@ -128,6 +128,7 @@ namespace Core
         {
             GameState = GameState.GameCongratulation;
             gameCongratulationUI.SetActive(true);
+            PlayerState.Instance.isWin();
         }
     }
 }
