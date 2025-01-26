@@ -174,10 +174,14 @@ namespace Ship
 
         private void DropGarbage(GarbageItem garbage)
         {
-            Vector3 spawnPosition = transform.position;
-            spawnPosition.y -= spawnYOffset;
+            // set spawn position
+            Vector3 spawnPosition = transform.position - new Vector3(0, spawnYOffset, 0);
             var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
             garbageObject.transform.SetParent(transform.parent);
+
+            // add initial velocity
+            var body = garbageObject.GetComponent<Rigidbody2D>();
+            body.linearVelocityY = -0.5f;
 
             SoundManager.Instance.PlayDropGarbageSound();
         }
