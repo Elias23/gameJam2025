@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4069257224397162646}
   - component: {fileID: -2247090911113310284}
   - component: {fileID: 5484471070414331089}
+  - component: {fileID: -4935050498028331253}
   m_Layer: 0
   m_Name: TrashFries
   m_TagString: Garbage
@@ -278,3 +279,14 @@ PolygonCollider2D:
       - {x: 0.049999997, y: -0.965}
       - {x: 0.16, y: -0.965}
   m_UseDelaunayMesh: 0
+--- !u!247 &-4935050498028331253
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691954807044524314}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
