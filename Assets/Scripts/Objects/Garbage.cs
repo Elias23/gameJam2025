@@ -75,28 +75,31 @@ namespace Objects
 
         private void HandleBubbleHit(GameObject collisionGameObject)
         {
-            //Attach Bubble to Garbage
-            hitCounter++;
-            Debug.Log("Bubble has hit the garbage");
-            collisionGameObject.transform.parent = transform;
+            // calculate hits based on bubble size
             var bubbleProjectileScript = collisionGameObject.GetComponent<BubbleProjectile>();
-            float bubbleSize = bubbleProjectileScript.GetSize();
+            var bubbleSize = bubbleProjectileScript.GetSize();
+            var addedHits = Mathf.RoundToInt(bubbleSize * bubbleSize);
+
+            hitCounter += addedHits;
+
+            // attach bubble to garbage object
+            collisionGameObject.transform.parent = transform;
             Destroy(bubbleProjectileScript);
             Destroy(collisionGameObject.GetComponent<CircleCollider2D>());
 
             // add buoyant force
-            forceComponent.force += new Vector2(0, CalculateForceForBouyancy() );
+            forceComponent.force += new Vector2(0, CalculateForceForBouyancy(addedHits) );
         }
 
-        private float CalculateForceForBouyancy()
+        private float CalculateForceForBouyancy(float addedHits)
         {
-            if (hitCounter == HitsNeededToFloat)
+            if (hitCounter >= HitsNeededToFloat)
                 return 10f; // massive bonus when counter reached
 
             // calculate force per hit to float
             var gravitationalForce = rigidBody.mass * Physics2D.gravity.y;
             var upForce = -gravitationalForce / (float)HitsNeededToFloat;
-            return upForce * 1.2f;
+            return upForce * addedHits * 1.2f;
         }
 
         public float GetWeight()
