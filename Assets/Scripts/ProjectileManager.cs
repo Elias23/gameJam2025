@@ -9,9 +9,9 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField, RequiredField] private GameObject bubblePrefab;
 
     [Header("Charge Shot")] [SerializeField]
-    private float chargeSpeed;
+    private float chargeSpeed=3f;
 
-    [SerializeField] private float maxCharge = 2.5f;
+    [SerializeField] private float maxCharge = 4f;
 
     [CanBeNull] private BubbleProjectile currentBubbleScript = null;
     private float currentChargeLevel = 1f;

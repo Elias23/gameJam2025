@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8089031250495071323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33fcc64a6d596e84aa6afad68668a1d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 129fff85d66388c4a9e6d171e55c465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 589299665702502475, guid: 8c9ac497d1089e746be97b9ac05ce54c, type: 3}
