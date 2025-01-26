@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Crabby Inc.
   productName: Crabby Cleaner
-  defaultCursor: {fileID: 2800000, guid: b18b2a6aa89a32443bd642823ed4b3fe, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -144,8 +144,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   - {fileID: 0}
-  - {fileID: 6302763438677325808, guid: 0db8d4ce9363eb04587ab4e96ec6bf8a, type: 2}
-  - {fileID: 11400000, guid: b0ea01e60686b764bb6ebf83b34c4b4e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1

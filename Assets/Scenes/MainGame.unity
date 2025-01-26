@@ -1227,6 +1227,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 550008877}
     - target: {fileID: 5798548956375248784, guid: 2858a9c9c7f92d84f806b944ccfbc411, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798548956375248784, guid: 2858a9c9c7f92d84f806b944ccfbc411, type: 3}
       propertyPath: m_fontSize
       value: 20
       objectReference: {fileID: 0}
