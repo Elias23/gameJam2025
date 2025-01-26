@@ -17,6 +17,7 @@ namespace Objects
         private int hitCounter = 0;
         private GameManager gameManager;
         private Rigidbody2D rigidBody;
+        private ConstantForce2D forceComponent;
 
         private void Start()
         {
@@ -24,6 +25,10 @@ namespace Objects
             gameManager = GameManager.Instance;
             rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.mass = weightClass;
+
+            forceComponent = gameObject.GetComponent<ConstantForce2D>();
+            if (!forceComponent) forceComponent = gameObject.AddComponent<ConstantForce2D>();
+            forceComponent.force = Vector2.zero;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -79,9 +84,6 @@ namespace Objects
             Destroy(collisionGameObject.GetComponent<CircleCollider2D>());
 
             // add buoyant force
-            var forceComponent = gameObject.GetComponent<ConstantForce2D>();
-            if (!forceComponent) forceComponent = gameObject.AddComponent<ConstantForce2D>();
-
             forceComponent.force += new Vector2(0, CalculateForceForBouyancy() );
         }
 
