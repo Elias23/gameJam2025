@@ -56,6 +56,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3be81251bbfd3c1468e1687065195cb5, type: 3}
   - {fileID: 8300000, guid: 50fecbe2e3ce78c41acc0525016ddf21, type: 3}
   - {fileID: 8300000, guid: 3b8e2ca0e6e808f4fb55bc3280fdd5b6, type: 3}
+  dropGarbageSounds:
+  - {fileID: 8300000, guid: dbe5b662fdbf95041a83062b3c6f57f4, type: 3}
+  - {fileID: 8300000, guid: 59a754e355e914d4c99e2d234bd44a76, type: 3}
+  - {fileID: 8300000, guid: 96a573bffc5a4b546bfcfef997529ad7, type: 3}
+  - {fileID: 8300000, guid: ad39fa6cd4d7685478281ba0333d30fa, type: 3}
   menuButtonSound: {fileID: 8300000, guid: ff8f8e01462382541a1dc77250b51555, type: 3}
   shipHornSound: {fileID: 8300000, guid: 441d8cf45af279f479d9eadf0c3d8548, type: 3}
-  ambienceLoopSound: {fileID: 8300000, guid: 96d27a4b13d8c35488ea68d5820a93c7, type: 3}
+  mainThemeSound: {fileID: 8300000, guid: 98cece3b243e483428e49249516e80b0, type: 3}

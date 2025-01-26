@@ -178,6 +178,8 @@ namespace Ship
             spawnPosition.y -= spawnYOffset;
             var garbageObject = Instantiate(garbage.Prefab, spawnPosition, Quaternion.identity);
             garbageObject.transform.SetParent(transform.parent);
+
+            SoundManager.Instance.PlayDropGarbageSound();
         }
 
         private void Sink()
