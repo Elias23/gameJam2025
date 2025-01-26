@@ -62,6 +62,7 @@ namespace Core
 
                 shipHealth = shipMaxHealth;
                 playerLife = playerMaxLife;
+                mainCamera = Camera.main;
             }
             else
             {
@@ -146,7 +147,7 @@ namespace Core
             return shipHealth / shipMaxHealth;
         }
 
-        public IEnumerator ShakeScreen(float duration, float magnitude)
+        private IEnumerator ShakeScreen(float duration, float magnitude)
         {
             var originalPos = mainCamera.transform.localPosition;
 
