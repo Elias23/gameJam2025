@@ -48,6 +48,8 @@ namespace Ship
         private float garbageDelayTimer;
         private bool canSpawnGarbage;
 
+        private bool firstFrame = true;
+
         private void Awake()
         {
             var garbageItems = garbagePrefabs
@@ -65,8 +67,6 @@ namespace Ship
 
         private void Start()
         {
-            SoundManager.Instance.PlayShipHornSound();
-
             var (top, bottom) = GameBounds.Instance.GetGameBoundsWorldPos();
             var screenBounds = GameBounds.Instance.GetWidth() / 2;
 
@@ -88,6 +88,12 @@ namespace Ship
 
         private void Update()
         {
+            if (firstFrame)
+            {
+                SoundManager.Instance.PlayShipHornSound();
+                firstFrame = false;
+            }
+
             if (GameManager.Instance.GameState == GameState.GameCongratulation)
             {
                 Sink();

@@ -50,6 +50,7 @@ namespace Player
         private bool isShootingReleased;
 
         private float touchMinDistanceThreshold = 0.125f;
+        private bool isCurrentlyShootingPressed = false;
 
         private Vector3? lastTouchPos;
 
@@ -98,8 +99,17 @@ namespace Player
         private void HandleShootingAction(Touch touch)
         {
             var touchPhase = touch.phase;
-            isShootingPressed |= touchPhase == TouchPhase.Began;
-            isShootingReleased |= touchPhase == TouchPhase.Ended;
+
+            if (touchPhase == TouchPhase.Began && !isCurrentlyShootingPressed)
+            {
+                isShootingPressed = true;
+                isCurrentlyShootingPressed = true;
+            }
+            else if (touchPhase == TouchPhase.Ended && isCurrentlyShootingPressed)
+            {
+                isShootingReleased = true;
+                isCurrentlyShootingPressed = false;
+            }
         }
 
         private void ResetPerUpdate()
