@@ -888,10 +888,6 @@ PrefabInstance:
       propertyPath: drawBounds
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -1998839893082717555, guid: af8fb7a26e8257f4a98f7afec8f01532, type: 3}
-      propertyPath: targetAspectRatio
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 6623039780341350379, guid: af8fb7a26e8257f4a98f7afec8f01532, type: 3}
       propertyPath: m_Name
       value: GameManager

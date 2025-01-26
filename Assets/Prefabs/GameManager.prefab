@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda6de89b8464fe1be9fd5fb9e7d76f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAspectRatio: 0.65
+  targetAspectRatio: 0.7
   targetVerticalOffset: 0.08
-  drawBounds: 1
+  drawBounds: 0
 --- !u!114 &8695686535457991306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +62,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 0}
   gameCongratulationUI: {fileID: 0}
-  shipHealth: 75
-  playerLife: 3
+  shipMaxHealth: 75
+  playerMaxLife: 3
   TutorialManagerPrefab: {fileID: 2600911808981536826, guid: 690fc52b47a97214e837b6840931d7cd, type: 3}

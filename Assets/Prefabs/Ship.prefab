@@ -52,13 +52,13 @@ MonoBehaviour:
   minWaitTime: 0.5
   maxWaitTime: 2
   screenEdgeBuffer: 0.5
-  yOffSet: -0.15
-  baseWeightPerMin: 50
-  weightIncreasePerMin: 40
+  yOffSet: -0.13
+  baseWeightPerMin: 70
+  weightIncreasePerMin: 69
   minDropInterval: 1
   heavyItemCooldown: 5
   recentWeightsMemory: 15
-  spawnYOffset: 0.6
+  spawnYOffset: 0.9
   initialGarbageDelay: 2
   fullLifeSprite: {fileID: -3252838049197385770, guid: 28af1e3812edf474e8e8c798e673f2ed, type: 3}
   lessThanTwoThirdsLifeSprite: {fileID: 369393955445255364, guid: 35ffac5e65cc00342890c6e8d9b914e5, type: 3}

@@ -189,9 +189,16 @@ namespace Ship
             // add initial velocity
             var body = garbageObject.GetComponent<Rigidbody2D>();
             var weightClass = garbage.WeightClass;
-            body.linearVelocityY = getInitialVelocity(weightClass);
+            setInitialVelocity(garbage, body, weightClass);
 
             SoundManager.Instance.PlayDropGarbageSound();
+        }
+
+        private static void setInitialVelocity(GarbageItem garbage, Rigidbody2D body, float weightClass)
+        {
+            body.linearVelocityY = getInitialVelocity(weightClass);
+            if (garbage.Prefab.name.Contains("Container"))
+                body.linearVelocityY = -2.5f;
         }
 
         private static float getInitialVelocity(float weightClass) =>
